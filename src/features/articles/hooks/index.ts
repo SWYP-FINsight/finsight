@@ -26,7 +26,7 @@ export const useArticles = ({ pageSize = 20, pageParam, ...options }: UseInfinit
       return currentPage + 1 < totalPages ? currentPage + 1 : undefined;
     },
 
-    initialPageParam: 0,
+    initialPageParam: pageParam,
     staleTime: 1000 * 60 * 5,
     ...options,
   });
