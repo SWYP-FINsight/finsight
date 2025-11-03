@@ -1,5 +1,5 @@
-import { getArticles } from '../api';
-import { articleKeys } from '../api/queryKey';
+import { getArticles } from '@/features/articles/api';
+import { articleKeys } from '@/features/articles/api/queryKey';
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 
 interface UseInfiniteArticlesOptions {

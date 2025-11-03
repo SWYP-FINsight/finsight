@@ -1,4 +1,4 @@
-import { IArticlesParams } from '../types';
+import { IArticlesParams } from '@/features/articles/types';
 
 export const articleKeys = {
   all: ['/api/articles'] as const,

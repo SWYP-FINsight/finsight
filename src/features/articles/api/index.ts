@@ -1,4 +1,4 @@
-import { ArticlesResponse, IArticlesParams } from '../types';
+import { ArticlesResponse, IArticlesParams } from '@/features/articles/types';
 import { http } from '@/lib/http';
 
 export const getArticles = async (params: IArticlesParams): Promise<ArticlesResponse> => {
