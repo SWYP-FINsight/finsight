@@ -1,5 +1,5 @@
 import { getArticles } from '@/features/articles/api';
-import { articleKeys } from '@/features/articles/api/queryKey';
+import { QueryKeys } from '@/shared/queries';
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 
 interface UseInfiniteArticlesOptions {
@@ -10,7 +10,7 @@ interface UseInfiniteArticlesOptions {
 
 export const useArticles = ({ pageSize = 20, pageParam, ...options }: UseInfiniteArticlesOptions = {}) => {
   return useInfiniteQuery({
-    queryKey: articleKeys.infinite({ page: pageSize, size: pageParam }),
+    queryKey: QueryKeys.articles.infinite({ page: pageSize, size: pageParam }),
 
     queryFn: ({ pageParam }) =>
       getArticles({
