@@ -6,9 +6,9 @@ import React from 'react';
 
 export default function Articles() {
   const { id } = useParams();
-  const { data, isLoading } = useArticleDetail(id as string);
+  const { data, isLoading } = useArticleDetail(Number(id));
 
-  if (!id || typeof id !== 'string') {
+  if (!id || typeof id !== 'number') {
     return <div>Invalid article ID</div>;
   }
 

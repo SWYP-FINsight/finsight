@@ -14,6 +14,6 @@ export const getArticles = async (params: IArticlesParams): Promise<ArticlesResp
   return http.getData<ArticlesResponse>(`/articles?${searchParams}`);
 };
 
-export const getArticleById = async (id: string) => {
+export const getArticleById = async (id: number) => {
   return http.getData<ArticleDetailResponse>(`/articles/${id}`);
 };

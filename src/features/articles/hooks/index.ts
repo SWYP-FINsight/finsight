@@ -32,11 +32,11 @@ export const useArticles = ({ pageSize = 20, pageParam, ...options }: UseInfinit
   });
 };
 
-export const useArticleDetail = (id: string | undefined) => {
+export const useArticleDetail = (id?: number) => {
   return useQuery({
-    queryKey: QueryKeys.articles.detail(id as string),
-    queryFn: () => getArticleById(id as string).then((res) => res.data),
-    enabled: !!id && typeof id === 'string',
+    queryKey: QueryKeys.articles.detail(id as number),
+    queryFn: () => getArticleById(id as number).then((res) => res.data),
+    enabled: !!id && typeof id === 'number',
     staleTime: 1000 * 60 * 5,
   });
 };
