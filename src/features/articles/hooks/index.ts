@@ -1,4 +1,4 @@
-import { getArticles } from '@/features/articles/api';
+import { getArticleById, getArticles } from '@/features/articles/api';
 import { QueryKeys } from '@/shared/queries';
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 
@@ -29,5 +29,14 @@ export const useArticles = ({ pageSize = 20, pageParam, ...options }: UseInfinit
     initialPageParam: pageParam,
     staleTime: 1000 * 60 * 5,
     ...options,
+  });
+};
+
+export const useArticleDetail = (id: string | undefined) => {
+  return useQuery({
+    queryKey: QueryKeys.articles.detail(id as string),
+    queryFn: () => getArticleById(id as string).then((res) => res.data),
+    enabled: !!id && typeof id === 'string',
+    staleTime: 1000 * 60 * 5,
   });
 };
