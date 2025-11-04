@@ -3,7 +3,7 @@
 import { useArticles } from '@/features/articles/hooks';
 import React from 'react';
 
-function ListExample() {
+export default function ListExample() {
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage } = useArticles({ pageParam: 0, pageSize: 2 });
 
   const handleLoadMore = () => {
@@ -26,5 +26,3 @@ function ListExample() {
     </div>
   );
 }
-
-export default ListExample;

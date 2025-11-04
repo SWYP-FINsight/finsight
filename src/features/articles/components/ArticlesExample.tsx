@@ -1,10 +1,10 @@
 'use client';
 
-import { useArticleDetail } from '../hooks';
+import { useArticleDetail } from '@/features/articles/hooks';
 import { useParams } from 'next/navigation';
 import React from 'react';
 
-function Articles() {
+export default function Articles() {
   const { id } = useParams();
   const { data, isLoading } = useArticleDetail(id as string);
 
@@ -22,5 +22,3 @@ function Articles() {
 
   return <div>{data.content}</div>;
 }
-
-export default Articles;
