@@ -17,6 +17,14 @@ export interface IArticlesParams {
   size?: number;
 }
 
+export interface IArticleDetail extends IArticles {
+  content: string;
+  reporter: string;
+  source: string;
+  importance?: number;
+  keyword: string;
+}
+
 export interface ArticlesResponse {
   message: string;
   data: {
@@ -26,5 +34,11 @@ export interface ArticlesResponse {
     totalElements: number;
     totalPage: number;
   };
+  timestamp: string;
+}
+
+export interface ArticleDetailResponse {
+  message: string;
+  data: IArticleDetail;
   timestamp: string;
 }

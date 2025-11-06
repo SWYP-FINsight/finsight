@@ -1,4 +1,4 @@
-import { ArticlesResponse, IArticlesParams } from '@/features/articles/types';
+import { ArticleDetailResponse, ArticlesResponse, IArticlesParams } from '@/features/articles/types';
 import { http } from '@/lib/http';
 
 export const getArticles = async (params: IArticlesParams): Promise<ArticlesResponse> => {
@@ -11,5 +11,9 @@ export const getArticles = async (params: IArticlesParams): Promise<ArticlesResp
     }
   });
 
-  return http.getData<ArticlesResponse>(`/finsight/articles?${searchParams}`);
+  return http.getData<ArticlesResponse>(`/articles?${searchParams}`);
+};
+
+export const getArticleById = async (id: number) => {
+  return http.getData<ArticleDetailResponse>(`/articles/${id}`);
 };

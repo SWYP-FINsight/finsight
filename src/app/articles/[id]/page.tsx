@@ -1,10 +1,10 @@
-import ListExample from '@/features/articles/components/ListExample';
+import Articles from '@/features/articles/components/ArticlesExample';
 import React from 'react';
 
 export default function page() {
   return (
     <div>
-      <ListExample />
+      <Articles />
     </div>
   );
 }
