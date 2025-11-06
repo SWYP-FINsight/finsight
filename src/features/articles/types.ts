@@ -21,7 +21,7 @@ export interface IArticleDetail extends IArticles {
   content: string;
   reporter: string;
   source: string;
-  importance: number | null;
+  importance?: number;
   keyword: string;
 }
 
