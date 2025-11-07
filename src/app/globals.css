@@ -1,6 +1,5 @@
 @import "tailwindcss";
-
-@tailwind utilities;
+@config "../../tailwind.config.ts";
 
 :root {
   font-size: 62.5%;
