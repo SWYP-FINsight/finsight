@@ -1,13 +1,14 @@
 import { cn } from '@/lib/utils';
+import { ButtonHTMLAttributes } from 'react';
 
-interface Props {
+interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   text: string;
   buttonSize: 'sm' | 'lg';
   onClick?: () => void;
   disabled?: boolean;
 }
 
-export default function Button({ text, buttonSize, onClick, disabled }: Props) {
+export default function Button({ text, buttonSize, onClick, disabled, ...rest }: Props) {
   return (
     <button
       type="button"
@@ -23,6 +24,7 @@ export default function Button({ text, buttonSize, onClick, disabled }: Props) {
           'w-[6.8rem]': buttonSize === 'sm',
         },
       )}
+      {...rest}
     >
       {text}
     </button>
