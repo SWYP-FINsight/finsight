@@ -8,4 +8,5 @@
 body {
   @apply m-0 mx-auto max-w-[375px] max-h-screen;
   font-family: var(--font-pretendard), sans-serif;
+  @apply bg-gray-100
 }
