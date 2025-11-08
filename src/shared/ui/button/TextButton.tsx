@@ -1,4 +1,4 @@
-import PlusIcon from '@/assets/icons/plusIcon.svg';
+import PlusIcon from '@/assets/icons/plus.svg';
 
 interface Props {
   text: string;
@@ -12,7 +12,7 @@ export default function TextButton({ text, onClick }: Props) {
       onClick={onClick}
       className="flex w-[5.7rem] h-[2.8rem] py-[0.6rem] px-[1rem] items-center cursor-pointer bg-brand500 rounded-full text-gray-50 text-[1.2rem] font-[600]"
     >
-      <PlusIcon />
+      <PlusIcon width="1.6rem" height="1.6rem" />
       {text}
     </button>
   );
