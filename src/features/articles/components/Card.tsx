@@ -1,6 +1,6 @@
-import { IArticleDetail } from '../types';
-import Tag from './Tag';
+import { IArticleDetail } from '@/features/articles/types';
 import { cn } from '@/lib/utils';
+import Tag from '@/shared/ui/tag/Tag';
 import React from 'react';
 
 interface Props {
