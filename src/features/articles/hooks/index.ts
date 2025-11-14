@@ -55,7 +55,6 @@ export const useArticleFilters = () => {
         }
       });
 
-      console.log(pathname, pathname === '/');
       router.push(`${pathname === '/' ? '' : pathname}?${params.toString()}`);
     },
     [searchParams, pathname, router],
