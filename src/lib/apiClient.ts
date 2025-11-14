@@ -10,11 +10,8 @@ export class HttpError extends Error {
   }
 }
 
-export const apiClient = async <T>(
-  endpoint: string,
-  options: RequestInit = {},
-): Promise<T> => {
-  const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+export const apiClient = async <T>(endpoint: string, options: RequestInit = {}): Promise<T> => {
+  const baseUrl = '';
 
   const defaultHeaders: HeadersInit = {
     'Content-Type': 'application/json',
@@ -43,7 +40,6 @@ export const apiClient = async <T>(
     } catch (e) {
       errorMessage = response.statusText;
     }
-
 
     throw new HttpError(errorStatus, errorMessage);
   }
