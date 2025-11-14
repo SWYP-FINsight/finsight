@@ -46,7 +46,7 @@ export default function ArticleList() {
   // 데이터가 없는 경우
   if (data && data.pages.flatMap((page) => page.data.content).length === 0) {
     return (
-      <div className="w-full h-full p-[1.6rem] flex flex-col items-center justify-center gap-4">
+      <div className="w-full h-full p-[1.6rem] flex flex-col items-center justify-center gap-[1.6rem]">
         <NoSearchIcon width={70} height={70} />
         <p className="color-gray900 font-bold text-lg">검색 결과가 없습니다.</p>
       </div>
@@ -64,7 +64,7 @@ export default function ArticleList() {
           ))}
       </div>
 
-      <div ref={observerRef} style={{ height: '20px' }} />
+      <div className="h-[2rem]" ref={observerRef} />
 
       {isFetchingNextPage && <div>더 불러오는 중...</div>}
     </div>
