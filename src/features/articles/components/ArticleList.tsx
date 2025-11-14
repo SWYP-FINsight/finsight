@@ -66,7 +66,7 @@ export default function ArticleList() {
         {data?.pages
           .flatMap((page) => page.data.content)
           .map((item) => (
-            <Card key={item.id} data={item} onClick={() => handleClick(item.id)} />
+            <Card key={item.id} className="cursor-pointer" data={item} onClick={() => handleClick(item.id)} />
           ))}
       </div>
 
