@@ -1,6 +1,6 @@
 'use client';
 
-import Card from './Card';
+import Card from '@/features/articles/components/Card';
 import { useArticleFilters, useArticles } from '@/features/articles/hooks';
 import { getDateBeforeDays } from '@/shared/utils';
 import React, { useEffect, useRef } from 'react';

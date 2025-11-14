@@ -1,5 +1,5 @@
-import { IArticlesParams } from '../types';
 import { getArticleById, getArticles } from '@/features/articles/api';
+import { IArticlesParams } from '@/features/articles/types';
 import { QUERY_STALE_TIME } from '@/shared/constants';
 import { QueryKeys } from '@/shared/queries';
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query';

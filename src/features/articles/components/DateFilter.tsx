@@ -1,7 +1,7 @@
 'use client';
 
-import { useArticleFilters } from '../hooks';
-import DropDown from './DropDown';
+import DropDown from '@/features/articles/components/DropDown';
+import { useArticleFilters } from '@/features/articles/hooks';
 import React, { useEffect, useState } from 'react';
 
 export type dateFilter = 'day' | 'week' | 'month';
