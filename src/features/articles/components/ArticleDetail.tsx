@@ -10,7 +10,6 @@ export default function ArticleDetail() {
   const { id } = useParams();
   const { data, isLoading } = useArticleDetail(Number(id));
   const { title, content, source, timestamp, articleUrl } = data || {};
-  console.log(data);
 
   if (isLoading) {
     return <div>Loading...</div>;
