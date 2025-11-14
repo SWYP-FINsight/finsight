@@ -34,7 +34,7 @@ export default function Header() {
         )}
       </div>
       <FormModal isOpen={isLoginModalOpen} onClose={closeLoginModal} title="로그인">
-        <LoginForm />
+        <LoginForm onLoginSuccess={closeLoginModal} />
       </FormModal>
     </header>
   );

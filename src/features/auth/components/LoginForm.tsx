@@ -11,15 +11,27 @@ interface LoginFormInputs {
   password: string;
 }
 
-export default function LoginForm() {
+interface Props {
+  onLoginSuccess?: () => void;
+}
+
+export default function LoginForm({ onLoginSuccess }: Props) {
   const {
     register,
     handleSubmit,
     formState: { errors },
     setError,
+    reset,
   } = useForm<LoginFormInputs>();
 
   const loginMutation = useLoginMutation({
+    onSuccess: () => {
+      reset();
+      if (onLoginSuccess) {
+        onLoginSuccess();
+      }
+    },
+
     onError: (error: HttpError) => {
       setError('root.serverError', {
         type: 'custom',
