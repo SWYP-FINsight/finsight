@@ -1,4 +1,5 @@
 import { getArticleById, getArticles } from '@/features/articles/api';
+import { QUERY_STALE_TIME } from '@/shared/constants';
 import { QueryKeys } from '@/shared/queries';
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 
@@ -27,7 +28,7 @@ export const useArticles = ({ pageSize = 20, pageParam, ...options }: UseInfinit
     },
 
     initialPageParam: pageParam,
-    staleTime: 1000 * 60 * 5,
+    staleTime: QUERY_STALE_TIME,
     ...options,
   });
 };
@@ -37,6 +38,6 @@ export const useArticleDetail = (id?: number) => {
     queryKey: QueryKeys.articles.detail(id as number),
     queryFn: () => getArticleById(id as number).then((res) => res.data),
     enabled: !!id && typeof id === 'number',
-    staleTime: 1000 * 60 * 5,
+    staleTime: QUERY_STALE_TIME,
   });
 };
