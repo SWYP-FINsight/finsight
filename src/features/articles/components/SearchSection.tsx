@@ -1,11 +1,14 @@
 'use client';
 
+import { useArticleFilters } from '../hooks';
 import ArrowLeftIcon from '@/assets/icons/arrow-left.svg';
 import SearchInput from '@/shared/ui/input/SearchInput';
-import React, { ChangeEvent, InputHTMLAttributes } from 'react';
+import React, { ChangeEvent } from 'react';
 
 export default function SearchSection() {
+  const { search, updateFilters } = useArticleFilters();
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    updateFilters({ search: e.target.value });
     console.log(e.target.value);
   };
 
