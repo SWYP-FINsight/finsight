@@ -25,15 +25,15 @@ export default function ArticleDetail() {
       <div className="px-4 py-5 cursor-pointer" onClick={() => window.history.back()}>
         <ArrowLeftIcon width={24} height={24} />
       </div>
-      <div className="bg-gray50 p-4 text-center space-y-5">
-        <div className="text-xl font-bold">{title}</div>
-        <div className="space-x-2">
+      <div className="bg-gray50 p-4 text-center space-y-10">
+        <div className="text-[2rem] font-bold">{title}</div>
+        <div className="space-x-2 text-[1.2rem]">
           <span>{formatDate(timestamp ?? '')}</span>
           <span className="mx-2">
             <span className="bg-gay500">• {source}</span>
           </span>
           <a
-            className="px-3 py-1 rounded-full border bg-gray50 border-gray300"
+            className="px-3 py-1 rounded-full border bg-gray50 border-gray300 font-[1rem]"
             href={'https://' + articleUrl}
             target="_blank"
             rel="noopener noreferrer"
@@ -41,7 +41,7 @@ export default function ArticleDetail() {
             기사원문
           </a>
         </div>
-        <div>{content}</div>
+        <div className="text-[1.4rem] font-regular">{content}</div>
       </div>
     </div>
   );
