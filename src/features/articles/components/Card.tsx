@@ -13,17 +13,25 @@ export default function Card({ className, data, ...rest }: Props) {
   const { title, source, content, timestamp } = data;
   return (
     <div
-      className={cn('relative', 'bg-gray50 rounded-lg', 'p-2.5 border border-gray100', 'space-y-3', className)}
+      className={cn(
+        'relative',
+        'bg-gray50 rounded-[0.8rem]',
+        'p-[1rem] border border-gray100',
+        'space-y-[1.2rem]',
+        className,
+      )}
       {...rest}
     >
       {/* 내용 */}
-      <div className="flex gap-1.5 flex-col">
+      <div className="flex gap-[0.6rem] flex-col">
         <div className="text-gray900 text-[1.4rem] font-bold line-clamp-2">{title}</div>
-        <p className="text-gray-800 text-[1.2rem] leading-relaxed whitespace-pre-wrap font-normal">{content}</p>
+        <p className="text-gray-800 text-[1.2rem] line-clamp-3 leading-relaxed whitespace-pre-wrap font-normal">
+          {content}
+        </p>
       </div>
 
       {/* 하단 정보 */}
-      <div className="flex flex-row justify-between text-[1rem] text-gray-500 pt-2">
+      <div className="flex flex-row justify-between text-[1rem] text-gray-500 pt-[0.8rem]">
         <div>{formatDate(timestamp)}</div>
         <Tag size="large">{source}</Tag>
       </div>
