@@ -6,7 +6,7 @@ import { getDateBeforeDays } from '@/shared/utils';
 import React, { useEffect, useRef } from 'react';
 
 function getDateBeforePeriod(period: string | null) {
-  if (period) return getDateBeforeDays(0);
+  if (!period) return getDateBeforeDays(0);
 
   return getDateBeforeDays(period === 'day' ? 1 : period === 'week' ? 7 : period === 'month' ? 30 : 0);
 }
