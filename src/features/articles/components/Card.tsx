@@ -4,15 +4,18 @@ import Tag from '@/shared/ui/tag/Tag';
 import { formatDate } from '@/shared/utils';
 import React from 'react';
 
-interface Props {
+interface Props extends React.HTMLAttributes<HTMLDivElement> {
   className?: string;
   data: IArticles;
 }
 
-export default function Card({ className, data }: Props) {
+export default function Card({ className, data, ...rest }: Props) {
   const { title, source, content, timestamp } = data;
   return (
-    <div className={cn('relative', 'bg-gray50 rounded-lg', 'p-2.5 border border-gray100', 'space-y-3', className)}>
+    <div
+      className={cn('relative', 'bg-gray50 rounded-lg', 'p-2.5 border border-gray100', 'space-y-3', className)}
+      {...rest}
+    >
       {/* 내용 */}
       <div className="flex gap-1.5 flex-col">
         <div className="text-gray900 text-[1.4rem] font-bold line-clamp-2">{title}</div>

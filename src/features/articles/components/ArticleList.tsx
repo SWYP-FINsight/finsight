@@ -3,6 +3,7 @@
 import Card from '@/features/articles/components/Card';
 import { useArticleFilters, useArticles } from '@/features/articles/hooks';
 import { getDateBeforeDays } from '@/shared/utils';
+import { useRouter } from 'next/navigation';
 import React, { useEffect, useRef } from 'react';
 
 function getDateBeforePeriod(period: string | null) {
@@ -16,7 +17,12 @@ export default function ArticleList() {
     pageSize: 10,
     period: getDateBeforePeriod(period) || undefined,
   });
+  const router = useRouter();
   const observerRef = useRef<HTMLDivElement>(null);
+
+  const handleClick = (id: number) => {
+    router.push(`/article/${id}`);
+  };
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -44,11 +50,11 @@ export default function ArticleList() {
     <div className="w-full p-[1.6rem]">
       {/* 데이터 렌더링 */}
       {data?.pages.map((page, i) => (
-        <div key={i} className="flex flex-col gap-4">
+        <div key={i} className="flex flex-col gap-4 cursor-pointer">
           {data?.pages
             .flatMap((page) => page.data.content)
             .map((item) => (
-              <Card key={item.id} data={item} />
+              <Card key={item.id} data={item} onClick={() => handleClick(item.id)} />
             ))}
         </div>
       ))}
