@@ -27,19 +27,20 @@ export default function LoginForm() {
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
       <div>
         <LabelInput
-          type="text"
           placeholder="아이디"
-          {...register('username', { required: '아이디는 필수 항목입니다.' })}
+          {...register('username', { required: '아이디는 필수입니다.' })}
+          isFailed={!!errors.username}
+          messageText={errors.username?.message}
         />
-        {errors.username && <p className="mt-1 text-xs text-red-500">{errors.username.message}</p>}
       </div>
       <div>
         <LabelInput
-          type="password"
           placeholder="비밀번호"
-          {...register('password', { required: '비밀번호는 필수 항목입니다.' })}
+          type="password"
+          {...register('password', { required: '비밀번호는 필수입니다.' })}
+          isFailed={!!errors.password}
+          messageText={errors.password?.message}
         />
-        {errors.password && <p className="mt-1 text-xs text-red-500">{errors.password.message}</p>}
       </div>
 
       <div className="flex gap-[0.8rem]">
