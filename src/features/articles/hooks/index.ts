@@ -2,6 +2,8 @@ import { getArticleById, getArticles } from '@/features/articles/api';
 import { QUERY_STALE_TIME } from '@/shared/constants';
 import { QueryKeys } from '@/shared/queries';
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { useCallback } from 'react';
 
 interface UseInfiniteArticlesOptions {
   pageSize?: number;
@@ -34,4 +36,34 @@ export const useArticleDetail = (id?: number) => {
     enabled: !!id && typeof id === 'number',
     staleTime: QUERY_STALE_TIME,
   });
+};
+
+export const useArticleFilters = () => {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  const updateFilters = useCallback(
+    (updates: Record<string, string | null>) => {
+      const params = new URLSearchParams(searchParams.toString());
+
+      Object.entries(updates).forEach(([key, value]) => {
+        if (value) {
+          params.set(key, value);
+        } else {
+          params.delete(key);
+        }
+      });
+
+      console.log(pathname, pathname === '/');
+      router.push(`${pathname === '/' ? '' : pathname}?${params.toString()}`);
+    },
+    [searchParams, pathname, router],
+  );
+
+  return {
+    period: searchParams.get('period'),
+    keyword: searchParams.get('keyword'),
+    updateFilters,
+  };
 };
