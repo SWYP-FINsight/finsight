@@ -1,3 +1,4 @@
+import { IArticlesParams } from '../types';
 import { getArticleById, getArticles } from '@/features/articles/api';
 import { QUERY_STALE_TIME } from '@/shared/constants';
 import { QueryKeys } from '@/shared/queries';
@@ -5,19 +6,20 @@ import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useCallback } from 'react';
 
-interface UseInfiniteArticlesOptions {
+interface UseInfiniteArticlesOptions extends IArticlesParams {
   pageSize?: number;
   initialCursor?: string;
   options?: Parameters<typeof useInfiniteQuery>[0];
 }
 
-export const useArticles = ({ pageSize = 20, initialCursor, ...options }: UseInfiniteArticlesOptions) => {
+export const useArticles = ({ pageSize = 20, period, initialCursor, ...options }: UseInfiniteArticlesOptions) => {
   return useInfiniteQuery({
-    queryKey: QueryKeys.articles.infinite({ size: pageSize }),
+    queryKey: QueryKeys.articles.infinite({ size: pageSize, period }),
     queryFn: ({ pageParam }) =>
       getArticles({
         cursor: pageParam, // cursor 기반으로 변경
         size: pageSize,
+        period,
       }),
     getNextPageParam: (lastPage) => {
       // cursor 기반 페이지네이션

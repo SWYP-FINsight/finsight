@@ -1,11 +1,21 @@
 'use client';
 
 import Card from './Card';
-import { useArticles } from '@/features/articles/hooks';
+import { useArticleFilters, useArticles } from '@/features/articles/hooks';
+import { getDateBeforeDays } from '@/shared/utils';
 import React, { useEffect, useRef } from 'react';
 
+function getDateBeforePeriod(period: string | null) {
+  if (period) return getDateBeforeDays(0);
+
+  return getDateBeforeDays(period === 'day' ? 1 : period === 'week' ? 7 : period === 'month' ? 30 : 0);
+}
 export default function ArticleList() {
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } = useArticles({ pageSize: 10 });
+  const { period, keyword } = useArticleFilters();
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } = useArticles({
+    pageSize: 10,
+    period: getDateBeforePeriod(period) || undefined,
+  });
   const observerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

@@ -4,14 +4,15 @@ import { useArticleFilters } from '../hooks';
 import DropDown from './DropDown';
 import React, { useEffect, useState } from 'react';
 
+export type dateFilter = 'day' | 'week' | 'month';
 interface DateOption {
   label: string;
-  key: string;
+  key: dateFilter;
 }
 const dateOptions: DateOption[] = [
-  { label: '일간', key: 'day' },
-  { label: '주간', key: 'week' },
-  { label: '월간', key: 'month' },
+  { label: '오늘', key: 'day' },
+  { label: '7일 이내', key: 'week' },
+  { label: '30일 이내', key: 'month' },
 ];
 
 export default function DateFilter() {
