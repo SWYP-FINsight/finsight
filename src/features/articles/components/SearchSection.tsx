@@ -1,7 +1,7 @@
 'use client';
 
-import ArticleList from './ArticleList';
 import ArrowLeftIcon from '@/assets/icons/arrow-left.svg';
+import ArticleList from '@/features/articles/components/ArticleList';
 import { useArticleFilters } from '@/features/articles/hooks';
 import SearchInput from '@/shared/ui/input/SearchInput';
 import React, { ChangeEvent, useEffect, useRef } from 'react';
