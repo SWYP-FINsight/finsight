@@ -1,6 +1,7 @@
 'use client';
 
 import { useLoginMutation } from '@/features/auth/hooks';
+import { HttpError } from '@/lib/apiClient';
 import MvpButton from '@/shared/ui/button/MvpButton';
 import LabelInput from '@/shared/ui/input/LabelInput';
 import { SubmitHandler, useForm } from 'react-hook-form';
@@ -15,9 +16,17 @@ export default function LoginForm() {
     register,
     handleSubmit,
     formState: { errors },
+    setError,
   } = useForm<LoginFormInputs>();
 
-  const loginMutation = useLoginMutation();
+  const loginMutation = useLoginMutation({
+    onError: (error: HttpError) => {
+      setError('root.serverError', {
+        type: 'custom',
+        message: error.message,
+      });
+    },
+  });
 
   const onSubmit: SubmitHandler<LoginFormInputs> = (data) => {
     loginMutation.mutate(data);
@@ -42,6 +51,9 @@ export default function LoginForm() {
           messageText={errors.password?.message}
         />
       </div>
+      {errors.root?.serverError && (
+        <p className="text-center text-[1rem] text-red-500">{errors.root.serverError.message}</p>
+      )}
 
       <div className="flex gap-[0.8rem]">
         <MvpButton type="submit" className="bg-[#3ED4E0]" disabled={loginMutation.isPending}>
