@@ -12,14 +12,21 @@ interface UseInfiniteArticlesOptions extends IArticlesParams {
   options?: Parameters<typeof useInfiniteQuery>[0];
 }
 
-export const useArticles = ({ pageSize = 20, period, initialCursor, ...options }: UseInfiniteArticlesOptions) => {
+export const useArticles = ({
+  pageSize = 20,
+  period,
+  search,
+  initialCursor,
+  ...options
+}: UseInfiniteArticlesOptions) => {
   return useInfiniteQuery({
-    queryKey: QueryKeys.articles.infinite({ size: pageSize, period }),
+    queryKey: QueryKeys.articles.infinite({ size: pageSize, period, search }),
     queryFn: ({ pageParam }) =>
       getArticles({
         cursor: pageParam, // cursor 기반으로 변경
         size: pageSize,
         period,
+        search,
       }),
     getNextPageParam: (lastPage) => {
       // cursor 기반 페이지네이션
@@ -64,7 +71,7 @@ export const useArticleFilters = () => {
 
   return {
     period: searchParams.get('period'),
-    keyword: searchParams.get('keyword'),
+    search: searchParams.get('search'),
     updateFilters,
   };
 };
