@@ -1,20 +1,22 @@
 'use client';
 
+import NoSearchIcon from '@/assets/icons/no-search.svg';
 import Card from '@/features/articles/components/Card';
 import { useArticleFilters, useArticles } from '@/features/articles/hooks';
 import { getDateBeforeDays } from '@/shared/utils';
 import React, { useEffect, useRef } from 'react';
 
 function getDateBeforePeriod(period: string | null) {
-  if (!period) return getDateBeforeDays(0);
+  if (!period) return null;
 
   return getDateBeforeDays(period === 'day' ? 0 : period === 'week' ? 7 : period === 'month' ? 30 : 0);
 }
 export default function ArticleList() {
-  const { period, keyword } = useArticleFilters();
+  const { period, search } = useArticleFilters();
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage } = useArticles({
     pageSize: 10,
     period: getDateBeforePeriod(period) || undefined,
+    search: search || undefined,
   });
   const observerRef = useRef<HTMLDivElement>(null);
 
@@ -40,20 +42,29 @@ export default function ArticleList() {
     };
   }, [fetchNextPage, hasNextPage, isFetchingNextPage]);
 
+  // render
+  // 데이터가 없는 경우
+  if (data && data.pages.flatMap((page) => page.data.content).length === 0) {
+    return (
+      <div className="w-full h-full p-[1.6rem] flex flex-col items-center justify-center gap-[1.6rem]">
+        <NoSearchIcon width={70} height={70} />
+        <p className="color-gray900 font-bold text-lg">검색 결과가 없습니다.</p>
+      </div>
+    );
+  }
+
   return (
     <div className="w-full p-[1.6rem]">
       {/* 데이터 렌더링 */}
-      {data?.pages.map((page, i) => (
-        <div key={i} className="flex flex-col gap-4">
-          {data?.pages
-            .flatMap((page) => page.data.content)
-            .map((item) => (
-              <Card key={item.id} data={item} />
-            ))}
-        </div>
-      ))}
+      <div className="flex flex-col gap-4">
+        {data?.pages
+          .flatMap((page) => page.data.content)
+          .map((item) => (
+            <Card key={item.id} data={item} />
+          ))}
+      </div>
 
-      <div ref={observerRef} style={{ height: '20px' }} />
+      <div className="h-[2rem]" ref={observerRef} />
 
       {isFetchingNextPage && <div>더 불러오는 중...</div>}
     </div>
