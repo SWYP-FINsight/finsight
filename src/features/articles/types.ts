@@ -3,37 +3,33 @@ import { ApiResponse } from '@/features/common/types';
 export interface IArticles {
   id: number;
   title: string;
-  subject: string;
-  distributor: string;
+  content: string;
+  source: string;
   timestamp: string;
 }
 
 export interface IArticlesParams {
-  subject?: string;
-  keyword?: string;
-  period?: string;
-  exdistributor?: string;
-  // default: 0
-  page?: number;
-  // default: 20
+  cursor?: string; // 마지막으로 조회된 가사의 publishedAt 값
   size?: number;
+  search?: string; // 검색어
+  period?: string;
+  source?: string; // 기사출처 (ex: '연합뉴스' 등)
 }
 
 export interface IArticleDetail extends IArticles {
   content: string;
   reporter: string;
   source: string;
-  importance?: number;
-  keyword: string;
+  articleUrl?: number;
+  importance: string;
 }
 
 export interface ArticlesResponse extends ApiResponse {
   data: {
     content: IArticles[];
-    pageNumber: number;
-    pageSize: number;
-    totalElements: number;
-    totalPage: number;
+    nextCursor: string;
+    hasNext: boolean;
+    size: number;
   };
 }
 
