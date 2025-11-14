@@ -6,9 +6,10 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   buttonSize: 'sm' | 'lg';
   onClick?: () => void;
   disabled?: boolean;
+  className?: string;
 }
 
-export default function Button({ text, buttonSize, onClick, disabled, ...rest }: Props) {
+export default function Button({ text, buttonSize, onClick, disabled, className, ...rest }: Props) {
   return (
     <button
       type="button"
@@ -23,6 +24,7 @@ export default function Button({ text, buttonSize, onClick, disabled, ...rest }:
           'w-[26.8rem]': buttonSize === 'lg',
           'w-[6.8rem]': buttonSize === 'sm',
         },
+        className,
       )}
       {...rest}
     >
