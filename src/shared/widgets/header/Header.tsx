@@ -8,7 +8,6 @@ import Link from 'next/link';
 
 export default function Header() {
   const { data: response, isLoading } = useAuthMe();
-  console.log(response);
 
   const isLoggedIn = response?.data?.loggedIn === true;
   const username = response?.data?.username;
