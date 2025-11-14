@@ -1,15 +1,16 @@
-import { IArticleDetail } from '@/features/articles/types';
+import { IArticles } from '@/features/articles/types';
 import { cn } from '@/lib/utils';
 import Tag from '@/shared/ui/tag/Tag';
+import { formatDate } from '@/shared/utils';
 import React from 'react';
 
 interface Props {
   className?: string;
-  data: IArticleDetail;
+  data: IArticles;
 }
 
 export default function Card({ className, data }: Props) {
-  const { title, content, source, timestamp } = data;
+  const { title, source, content, timestamp } = data;
   return (
     <div className={cn('relative', 'bg-gray50 rounded-lg', 'p-2.5 border border-gray100', 'space-y-3', className)}>
       {/* 내용 */}
@@ -20,7 +21,7 @@ export default function Card({ className, data }: Props) {
 
       {/* 하단 정보 */}
       <div className="flex flex-row justify-between text-[1rem] text-gray-500 pt-2">
-        <div>{new Date(timestamp).getFullYear() + new Date(timestamp).getMonth() + new Date(timestamp).getDay()}</div>
+        <div>{formatDate(timestamp)}</div>
         <Tag size="large">{source}</Tag>
       </div>
     </div>
