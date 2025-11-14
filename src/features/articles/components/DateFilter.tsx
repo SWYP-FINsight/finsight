@@ -32,6 +32,7 @@ export default function DateFilter() {
       <DropDown<DateOption>
         items={dateOptions}
         label={label}
+        defaultValue={dateOptions.find((option) => option.key === period)}
         onChange={handleChange}
         itemToKey={(item) => item.key}
         itemToLabel={(item) => item.label}
