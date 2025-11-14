@@ -1,3 +1,5 @@
+import { ApiResponse } from '@/features/common/types';
+
 export interface IArticles {
   id: number;
   title: string;
@@ -25,8 +27,7 @@ export interface IArticleDetail extends IArticles {
   keyword: string;
 }
 
-export interface ArticlesResponse {
-  message: string;
+export interface ArticlesResponse extends ApiResponse {
   data: {
     content: IArticles[];
     pageNumber: number;
@@ -34,11 +35,8 @@ export interface ArticlesResponse {
     totalElements: number;
     totalPage: number;
   };
-  timestamp: string;
 }
 
-export interface ArticleDetailResponse {
-  message: string;
+export interface ArticleDetailResponse extends ApiResponse {
   data: IArticleDetail;
-  timestamp: string;
 }
