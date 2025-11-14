@@ -8,7 +8,7 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   onClick?: () => void;
 }
 
-export default function DefaultButton({ text, textColor, color, onClick, ...rest }: Props) {
+export default function DefaultButton({ text, textColor, color, onClick, className, ...rest }: Props) {
   return (
     <button
       type="button"
@@ -19,6 +19,7 @@ export default function DefaultButton({ text, textColor, color, onClick, ...rest
         `text-${textColor}`,
         { 'border border-gray-300': color === 'gray50' },
         'cursor-pointer',
+        className,
       )}
       {...rest}
     >
