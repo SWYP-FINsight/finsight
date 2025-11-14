@@ -24,17 +24,19 @@ export default function FormModal({ isOpen, onClose, title, children, className,
         aria-modal="true"
         {...rest}
       >
-        <div className="relative flex justify-center items-center">
-          {title && <h2 className="text-center text-18 font-bold text-gray-900">{title}</h2>}
-          <button
-            type="button"
-            onClick={onClose}
-            className="absolute flex justify-end items-center w-[2.4rem] h-[2.4rem] right-0 cursor-pointer"
-          >
-            <CloseIcon width="1rem" height="1rem" />
-          </button>
+        <div className="flex flex-col gap-[1.8rem]">
+          <div className="relative flex justify-center items-center">
+            {title && <h2 className="text-center text-18 font-bold text-gray-900">{title}</h2>}
+            <button
+              type="button"
+              onClick={onClose}
+              className="absolute flex justify-end items-center w-[2.4rem] h-[2.4rem] right-0 cursor-pointer"
+            >
+              <CloseIcon width="1rem" height="1rem" />
+            </button>
+          </div>
+          <div>{children}</div>
         </div>
-        <div>{children}</div>
       </div>
     </div>
   );

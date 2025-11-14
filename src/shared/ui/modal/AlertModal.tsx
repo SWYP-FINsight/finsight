@@ -10,7 +10,7 @@ interface Props extends HTMLAttributes<HTMLDivElement> {
   modalType?: 'success' | 'error';
 }
 
-export default function Modal({ isOpen, onClose, children, modalType, ...rest }: Props) {
+export default function AlertModal({ isOpen, onClose, children, modalType, ...rest }: Props) {
   const Icon = modalType === 'success' ? SuccessIcon : ErrorIcon;
   return (
     <div
