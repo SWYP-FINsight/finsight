@@ -1,4 +1,11 @@
-import { AuthMeResponse, IUsernameParams, LoginRequest, UsernameValidateResponse } from '@/features/auth/types';
+import {
+  AuthMeResponse,
+  IUsernameParams,
+  LoginRequest,
+  RegisterRequest,
+  RegisterResponse,
+  UsernameValidateResponse,
+} from '@/features/auth/types';
 import { ApiResponse } from '@/features/common/types';
 import { http } from '@/lib/http';
 
@@ -17,4 +24,8 @@ export const checkUsername = async (params: IUsernameParams) => {
   const finalUrl = queryParams ? `${baseUrl}?${queryParams}` : baseUrl;
 
   return http.getData<UsernameValidateResponse>(finalUrl);
+};
+
+export const registerUser = async (request: RegisterRequest) => {
+  return http.postData<RegisterResponse>(`/auth/signup`, request);
 };

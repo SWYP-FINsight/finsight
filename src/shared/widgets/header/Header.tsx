@@ -9,6 +9,8 @@ import FormModal from '@/shared/ui/modal/FormModal';
 import Link from 'next/link';
 import { useState } from 'react';
 
+type ModalType = 'login' | 'register' | null;
+
 export default function Header() {
   const { data: response, isLoading } = useAuthMe();
   const isLoggedIn = response?.data?.loggedIn === true;
