@@ -11,7 +11,7 @@ export class HttpError extends Error {
 }
 
 export const apiClient = async <T>(endpoint: string, options: RequestInit = {}): Promise<T> => {
-  const baseUrl = '';
+  const baseUrl = '/api';
 
   const defaultHeaders: HeadersInit = {
     'Content-Type': 'application/json',
