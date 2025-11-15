@@ -1,11 +1,12 @@
-import { getAuthMe, loginUser } from '@/features/auth/api';
-import { AuthMeResponse, LoginRequest } from '@/features/auth/types';
+import { checkUsername, getAuthMe, loginUser } from '@/features/auth/api';
+import { AuthMeResponse, IUsernameParams, LoginRequest, UsernameValidateResponse } from '@/features/auth/types';
 import { ApiResponse } from '@/features/common/types';
 import { HttpError } from '@/lib/apiClient';
 import { QUERY_STALE_TIME } from '@/shared/constants';
-import { UseMutationOptions, useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useMutation, UseMutationOptions, useQuery, useQueryClient } from '@tanstack/react-query';
 
 type LoginMutationOptions = UseMutationOptions<ApiResponse, HttpError, LoginRequest>;
+type CheckUsernameMutationOptions = UseMutationOptions<UsernameValidateResponse, HttpError, IUsernameParams>;
 
 export const useAuthMe = () => {
   return useQuery<AuthMeResponse, HttpError>({
@@ -22,6 +23,18 @@ export const useLoginMutation = (options?: Omit<LoginMutationOptions, 'mutationF
     mutationFn: loginUser,
     onSuccess: (data, variables, context) => {
       queryClient.invalidateQueries({ queryKey: ['auth', 'me'] });
+      options?.onSuccess?.(data, variables, context);
+    },
+    onError: (error) => {
+      options?.onError?.(error);
+    },
+  });
+};
+
+export const useCheckUsernameMutation = (options?: Omit<CheckUsernameMutationOptions, 'mutationFn'>) => {
+  return useMutation<UsernameValidateResponse, HttpError, IUsernameParams>({
+    mutationFn: (IUsernameParams) => checkUsername(IUsernameParams),
+    onSuccess: (data, variables, context) => {
       options?.onSuccess?.(data, variables, context);
     },
     onError: (error) => {
