@@ -13,9 +13,10 @@ interface LoginFormInputs {
 
 interface Props {
   onLoginSuccess?: () => void;
+  onSwitchToRegister?: () => void;
 }
 
-export default function LoginForm({ onLoginSuccess }: Props) {
+export default function LoginForm({ onLoginSuccess, onSwitchToRegister }: Props) {
   const {
     register,
     handleSubmit,
@@ -72,7 +73,7 @@ export default function LoginForm({ onLoginSuccess }: Props) {
           {loginMutation.isPending ? '로그인 중...' : '로그인'}
         </MvpButton>
 
-        <MvpButton type="button" className="bg-brand500">
+        <MvpButton type="button" className="bg-brand500" onClick={onSwitchToRegister}>
           회원가입
         </MvpButton>
       </div>
