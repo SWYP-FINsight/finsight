@@ -1,33 +1,39 @@
 import { getArticleById, getArticles } from '@/features/articles/api';
+import { IArticlesParams } from '@/features/articles/types';
+import { QUERY_STALE_TIME } from '@/shared/constants';
 import { QueryKeys } from '@/shared/queries';
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { useCallback } from 'react';
 
-interface UseInfiniteArticlesOptions {
+interface UseInfiniteArticlesOptions extends IArticlesParams {
   pageSize?: number;
-  pageParam?: number;
+  initialCursor?: string;
   options?: Parameters<typeof useInfiniteQuery>[0];
 }
 
-export const useArticles = ({ pageSize = 20, pageParam, ...options }: UseInfiniteArticlesOptions = {}) => {
+export const useArticles = ({
+  pageSize = 20,
+  period,
+  search,
+  initialCursor,
+  ...options
+}: UseInfiniteArticlesOptions) => {
   return useInfiniteQuery({
-    queryKey: QueryKeys.articles.infinite({ page: pageSize, size: pageParam }),
-
+    queryKey: QueryKeys.articles.infinite({ size: pageSize, period, search }),
     queryFn: ({ pageParam }) =>
       getArticles({
-        page: pageParam, // pageNumber → page 변환
-        size: pageSize, // pageSize → size 변환
+        cursor: pageParam, // cursor 기반으로 변경
+        size: pageSize,
+        period,
+        search,
       }),
-
     getNextPageParam: (lastPage) => {
-      // 응답의 pageNumber 사용
-      const currentPage = lastPage.data.pageNumber;
-      const totalPages = lastPage.data.totalPage;
-
-      return currentPage + 1 < totalPages ? currentPage + 1 : undefined;
+      // cursor 기반 페이지네이션
+      return lastPage.data.hasNext ? lastPage.data.nextCursor : undefined;
     },
-
-    initialPageParam: pageParam,
-    staleTime: 1000 * 60 * 5,
+    initialPageParam: initialCursor,
+    staleTime: QUERY_STALE_TIME,
     ...options,
   });
 };
@@ -37,6 +43,35 @@ export const useArticleDetail = (id?: number) => {
     queryKey: QueryKeys.articles.detail(id as number),
     queryFn: () => getArticleById(id as number).then((res) => res.data),
     enabled: !!id && typeof id === 'number',
-    staleTime: 1000 * 60 * 5,
+    staleTime: QUERY_STALE_TIME,
   });
+};
+
+export const useArticleFilters = () => {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  const updateFilters = useCallback(
+    (updates: Record<string, string | null>) => {
+      const params = new URLSearchParams(searchParams.toString());
+
+      Object.entries(updates).forEach(([key, value]) => {
+        if (value) {
+          params.set(key, value);
+        } else {
+          params.delete(key);
+        }
+      });
+
+      router.push(`${pathname === '/' ? '' : pathname}?${params.toString()}`);
+    },
+    [searchParams, pathname, router],
+  );
+
+  return {
+    period: searchParams.get('period'),
+    search: searchParams.get('search'),
+    updateFilters,
+  };
 };

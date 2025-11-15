@@ -1,10 +1,10 @@
-import Articles from '@/features/articles/components/ArticlesExample';
+import ArticleDetail from '@/features/articles/components/ArticleDetail';
 import React from 'react';
 
 export default function page() {
   return (
     <div>
-      <Articles />
+      <ArticleDetail />
     </div>
   );
 }
