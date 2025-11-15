@@ -29,12 +29,12 @@ export const useLoginMutation = (options?: Omit<LoginMutationOptions, 'mutationF
 
   return useMutation<ApiResponse, HttpError, LoginRequest>({
     mutationFn: loginUser,
-    onSuccess: (data, variables, context) => {
+    onSuccess: (data, variables, context, ...rest) => {
       queryClient.invalidateQueries({ queryKey: ['auth', 'me'] });
-      options?.onSuccess?.(data, variables, context);
+      options?.onSuccess?.(data, variables, context, ...rest);
     },
-    onError: (error) => {
-      options?.onError?.(error);
+    onError: (error, ...rest) => {
+      options?.onError?.(error, ...rest);
     },
   });
 };

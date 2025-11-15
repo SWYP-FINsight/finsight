@@ -10,11 +10,11 @@ import { ApiResponse } from '@/features/common/types';
 import { http } from '@/lib/http';
 
 export const getAuthMe = async () => {
-  return http.getData<AuthMeResponse>(`/auth/user/me`);
+  return http.getData<AuthMeResponse>(`/auth/me`);
 };
 
 export const loginUser = async (request: LoginRequest) => {
-  return http.postData<ApiResponse>(`/auth/user/login`, request);
+  return http.postData<ApiResponse>(`/auth/login`, request);
 };
 
 export const checkUsername = async (params: IUsernameParams) => {
