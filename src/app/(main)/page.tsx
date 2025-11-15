@@ -6,13 +6,15 @@ import { Suspense } from 'react';
 
 export default function Home() {
   return (
-    <div className="flex flex-col">
-      <Suspense fallback={<div>Loading...</div>}>
-        <Header />
-        <SearchComponent />
-        <DateFilter />
-        <ArticleList />
-      </Suspense>
-    </div>
+    <>
+      <div className="flex flex-col">
+        <Suspense fallback={<div>Loading...</div>}>
+          <Header />
+          <SearchComponent />
+          <DateFilter />
+          <ArticleList />
+        </Suspense>
+      </div>
+    </>
   );
 }
