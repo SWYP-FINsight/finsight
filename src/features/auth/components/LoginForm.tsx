@@ -46,7 +46,7 @@ export default function LoginForm({ onLoginSuccess, onSwitchToRegister }: Props)
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-[1rem]">
       <div>
         <LabelInput
           placeholder="아이디"
