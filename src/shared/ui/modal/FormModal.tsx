@@ -1,3 +1,4 @@
+import BackIcon from '@/assets/icons/arrow-left.svg';
 import CloseIcon from '@/assets/icons/close.svg';
 import { cn } from '@/lib/utils';
 import { HTMLAttributes, ReactNode } from 'react';
@@ -8,9 +9,10 @@ interface Props extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
   title?: string;
   className?: string;
+  onBack?: () => void;
 }
 
-export default function FormModal({ isOpen, onClose, title, children, className, ...rest }: Props) {
+export default function FormModal({ isOpen, onClose, title, onBack, children, className, ...rest }: Props) {
   if (!isOpen) {
     return null;
   }
@@ -26,6 +28,15 @@ export default function FormModal({ isOpen, onClose, title, children, className,
       >
         <div className="flex flex-col gap-[1.8rem]">
           <div className="relative flex justify-center items-center">
+            {onBack && (
+              <button
+                type="button"
+                onClick={onBack}
+                className="absolute flex justify-start items-center w-[2.4rem] h-[2.4rem] left-0 cursor-pointer"
+              >
+                <BackIcon width="1.4rem" height="1.4rem" />
+              </button>
+            )}
             {title && <h2 className="text-center text-18 font-bold text-gray-900">{title}</h2>}
             <button
               type="button"

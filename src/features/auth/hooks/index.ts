@@ -10,7 +10,7 @@ import {
 import { ApiResponse } from '@/features/common/types';
 import { HttpError } from '@/lib/apiClient';
 import { QUERY_STALE_TIME } from '@/shared/constants';
-import { useMutation, UseMutationOptions, useQuery, useQueryClient } from '@tanstack/react-query';
+import { UseMutationOptions, useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
 type LoginMutationOptions = UseMutationOptions<ApiResponse, HttpError, LoginRequest>;
 type CheckUsernameMutationOptions = UseMutationOptions<UsernameValidateResponse, HttpError, IUsernameParams>;
