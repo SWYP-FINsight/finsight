@@ -32,7 +32,7 @@ export const apiClient = async <T>(endpoint: string, options: RequestInit = {}):
 
   if (!response.ok) {
     let errorMessage = 'An unknown error occurred';
-    let errorStatus = response.status;
+    const errorStatus = response.status;
 
     try {
       const errorData = await response.json();
