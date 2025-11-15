@@ -10,7 +10,7 @@ import {
 import { ApiResponse } from '@/features/common/types';
 import { HttpError } from '@/lib/apiClient';
 import { QUERY_STALE_TIME } from '@/shared/constants';
-import { UseMutationOptions, useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useMutation, UseMutationOptions, useQuery, useQueryClient } from '@tanstack/react-query';
 
 type LoginMutationOptions = UseMutationOptions<ApiResponse, HttpError, LoginRequest>;
 type CheckUsernameMutationOptions = UseMutationOptions<UsernameValidateResponse, HttpError, IUsernameParams>;
@@ -41,7 +41,7 @@ export const useLoginMutation = (options?: Omit<LoginMutationOptions, 'mutationF
 
 export const useCheckUsernameMutation = (options?: Omit<CheckUsernameMutationOptions, 'mutationFn'>) => {
   return useMutation<UsernameValidateResponse, HttpError, IUsernameParams>({
-    mutationFn: (IUsernameParams) => checkUsername(IUsernameParams),
+    mutationFn: (params) => checkUsername(params),
     onSuccess: (data, variables, context) => {
       options?.onSuccess?.(data, variables, context);
     },
