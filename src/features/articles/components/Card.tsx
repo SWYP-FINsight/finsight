@@ -1,4 +1,5 @@
 import { IArticles } from '@/features/articles/types';
+import { ICollectionArticles } from '@/features/my-collection/types';
 import { cn } from '@/lib/utils';
 import Tag from '@/shared/ui/tag/Tag';
 import { formatDate } from '@/shared/utils';
@@ -6,7 +7,7 @@ import React from 'react';
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
   className?: string;
-  data: IArticles;
+  data: IArticles | ICollectionArticles;
 }
 
 export default function Card({ className, data, ...rest }: Props) {

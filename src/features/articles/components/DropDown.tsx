@@ -6,7 +6,7 @@ import React, { useEffect, useRef, useState } from 'react';
 
 interface DropDownProps<T> {
   items: T[];
-  label: string;
+  label: string | React.ReactNode;
   defaultValue?: T;
   onChange: (value: T) => void;
   className?: string;
@@ -81,9 +81,12 @@ const DropDown = <T,>({
         aria-expanded={isOpen}
       >
         <span>{label}</span>
-        <div className={cn('transform transition-transform duration-200', isOpen ? 'rotate-180' : 'rotate-0')}>
-          <ArrowDownIcon width={8} height={4} />
-        </div>
+        {/* label이 string인 경우만 추가 */}
+        {label && typeof label === 'string' && (
+          <div className={cn('transform transition-transform duration-200', isOpen ? 'rotate-180' : 'rotate-0')}>
+            <ArrowDownIcon width={8} height={4} />
+          </div>
+        )}
       </button>
 
       {isOpen && (
