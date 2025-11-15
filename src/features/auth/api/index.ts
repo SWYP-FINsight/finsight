@@ -18,7 +18,7 @@ export const loginUser = async (request: LoginRequest) => {
 };
 
 export const checkUsername = async (params: IUsernameParams) => {
-  const queryParams = new URLSearchParams(params.username).toString();
+  const queryParams = new URLSearchParams(params as Record<string, string>).toString();
 
   const baseUrl = `/auth/check-username`;
   const finalUrl = queryParams ? `${baseUrl}?${queryParams}` : baseUrl;
