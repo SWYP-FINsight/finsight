@@ -7,8 +7,6 @@ import React from 'react';
 export default function CollectionList() {
   const { data, isLoading, isFetching } = useCollections();
 
-  console.log(data);
-
   if (isFetching || isLoading) {
     return (
       <div className="w-full p-[1.6rem] justify-center items-center flex flex-col gap-[2rem] h-dvh">

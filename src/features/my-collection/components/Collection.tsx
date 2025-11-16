@@ -13,7 +13,7 @@ export default function Collection({ data }: Props) {
   if (!data) return;
 
   return (
-    <div className="w-full p-[1.6rem] flex flex-col gap-[1.6rem]">
+    <div className="flex flex-col gap-[1.6rem]">
       <div className="flex justify-between">
         <p className="text-[1.8rem] font-bold">{data?.collectionName ?? ''}</p>
 

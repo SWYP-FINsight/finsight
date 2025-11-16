@@ -48,13 +48,13 @@ export default function CollectionArticleList({ collectionId }: Props) {
   }
 
   return (
-    <div className="w-full p-[1.6rem]">
+    <div className="h-[40rem] overflow-y-auto">
       {/* 데이터 렌더링 */}
       <div className="flex flex-col gap-4">
         {data?.pages
           .flatMap((page) => page.data.content)
           .map((item) => (
-            <Card key={item.id} className="cursor-pointer" data={item} onClick={() => handleClick(item.id)} />
+            <Card key={item?.id} className="cursor-pointer" data={item} onClick={() => handleClick(item?.id)} />
           ))}
       </div>
 

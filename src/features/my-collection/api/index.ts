@@ -26,5 +26,5 @@ export const getCollectionArticle = async (params: ICollectionArticlesParams): P
     }
   });
 
-  return http.getData<CollectionArticlesResponse>(`/collections/${params.collectionId}?${searchParams}`);
+  return http.getData<CollectionArticlesResponse>(`/collections/${params.collectionId}/articles?${searchParams}`);
 };
