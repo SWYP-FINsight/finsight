@@ -3,6 +3,7 @@
 import ArrowLeftIcon from '@/assets/icons/arrow-left.svg';
 import { useArticleDetail } from '@/features/articles/hooks';
 import { formatDate } from '@/shared/utils';
+import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import React from 'react';
 
@@ -31,14 +32,14 @@ export default function ArticleDetail() {
           <span className="mx-2">
             <span className="bg-gay500">• {source}</span>
           </span>
-          <a
+          <Link
             className="px-3 py-1 rounded-full border bg-gray50 border-gray300 font-[1rem]"
-            href={'https://' + articleUrl}
+            href={articleUrl || ''}
             target="_blank"
             rel="noopener noreferrer"
           >
             기사원문
-          </a>
+          </Link>
         </div>
         <div className="text-[1.4rem] font-regular">{content}</div>
       </div>
