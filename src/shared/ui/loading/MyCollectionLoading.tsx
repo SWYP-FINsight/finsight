@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Loading() {
+export default function MyCollectionLoading() {
   return (
     <div className="w-full p-[1.6rem] justify-center items-center flex flex-col gap-[2rem] h-dvh">
       {/* TODO: 스피터 아이콘 추가 */}

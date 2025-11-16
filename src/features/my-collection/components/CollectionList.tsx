@@ -3,14 +3,14 @@
 import AddFolderIcon from '@/assets/icons/add-folder.svg';
 import Collection from '@/features/my-collection/components/Collection';
 import { useCollections } from '@/features/my-collection/hooks';
-import Loading from '@/shared/ui/loading/Loading';
+import MyCollectionLoading from '@/shared/ui/loading/MyCollectionLoading';
 import React from 'react';
 
 export default function CollectionList() {
   const { data, isLoading, isFetching } = useCollections();
 
   if (isFetching || isLoading) {
-    return <Loading />;
+    return <MyCollectionLoading />;
   }
 
   if (data && data.totalCount === 0) {

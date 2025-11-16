@@ -5,7 +5,7 @@ import AddCollectionForm from '@/features/my-collection/components/AddCollection
 import Header from '@/features/my-collection/components/Collection.Header';
 import CollectionList from '@/features/my-collection/components/CollectionList';
 import CollectionLoggedOut from '@/features/my-collection/components/CollectionLoggedOut';
-import Loading from '@/shared/ui/loading/Loading';
+import MyCollectionLoading from '@/shared/ui/loading/MyCollectionLoading';
 import AlertModal from '@/shared/ui/modal/AlertModal';
 import FormModal from '@/shared/ui/modal/FormModal';
 import { useState } from 'react';
@@ -21,7 +21,7 @@ export default function CollectionPage() {
   const closeModal = () => setActiveModal(null);
 
   if (isLoading) {
-    return <Loading />;
+    return <MyCollectionLoading />;
   }
 
   return (
