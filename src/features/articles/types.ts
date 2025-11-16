@@ -20,7 +20,7 @@ export interface IArticleDetail extends IArticles {
   content: string;
   reporter: string;
   source: string;
-  articleUrl?: number;
+  articleUrl?: string;
   importance: string;
 }
 
