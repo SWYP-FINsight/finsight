@@ -1,4 +1,5 @@
 'use client';
+
 import CollectionMenuIcon from '@/assets/icons/collection-menu.svg';
 import DropDown from '@/features/articles/components/DropDown';
 import CollectionArticleList from '@/features/my-collection/components/Collection.ArticleList';
