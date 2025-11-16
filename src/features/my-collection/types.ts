@@ -12,8 +12,6 @@ export interface ICollectionDetail extends ICollections {
   source: string;
 }
 
-export interface ICollectionArticles extends IArticles {}
-
 export interface ICollectionArticlesParams {
   collectionId: number;
   cursor?: string; // 마지막으로 조회된 가사의 publishedAt 값
@@ -33,7 +31,7 @@ export interface CollectionDetailResponse extends ApiResponse {
 
 export interface CollectionArticlesResponse extends ApiResponse {
   data: {
-    content: ICollectionArticles[];
+    content: IArticles[];
     nextCursor: string;
     hasNext: boolean;
     size: number;
