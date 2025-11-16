@@ -1,6 +1,7 @@
 import { cn } from '@/lib/utils';
+import { ButtonHTMLAttributes } from 'react';
 
-interface Props {
+interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   title: string;
   size?: 'lg' | 'sm';
   isActive?: boolean;
