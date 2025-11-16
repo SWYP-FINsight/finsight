@@ -1,3 +1,4 @@
+import { ApiResponse } from '@/features/common/types';
 import {
   AddCollectionResponse,
   CollectionArticlesResponse,
@@ -33,4 +34,8 @@ export const getCollectionArticle = async (params: ICollectionArticlesParams): P
 
 export const addCollection = async (data: IAddCollection) => {
   return http.postData<AddCollectionResponse>(`/collections`, data);
+};
+
+export const deleteCollection = async (id: number) => {
+  return http.deleteData<ApiResponse>(`/collections/${id}`);
 };
