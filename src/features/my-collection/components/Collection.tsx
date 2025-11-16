@@ -1,15 +1,22 @@
 'use client';
+
 import CollectionMenuIcon from '@/assets/icons/collection-menu.svg';
 import DropDown from '@/features/articles/components/DropDown';
 import CollectionArticleList from '@/features/my-collection/components/Collection.ArticleList';
 import { ICollections } from '@/features/my-collection/types';
-import React from 'react';
+import { useDeleteModalStore } from '@/shared/store/useDeleteModalStore';
 
 interface Props {
   data: ICollections;
 }
 
 export default function Collection({ data }: Props) {
+  const openDeleteModal = useDeleteModalStore((state) => state.open);
+
+  const handleDropdownChange = () => {
+    openDeleteModal(data.id);
+  };
+
   if (!data) return;
 
   return (
@@ -20,8 +27,7 @@ export default function Collection({ data }: Props) {
         <DropDown<string>
           items={['삭제']}
           defaultValue=""
-          // TODO: 삭제 기능 구현
-          onChange={() => {}}
+          onChange={handleDropdownChange}
           label={<CollectionMenuIcon width={24} height={24} />}
           itemToKey={(item) => item}
           itemToLabel={(item) => item}

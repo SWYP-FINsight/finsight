@@ -1,6 +1,7 @@
 'use client';
 
 import ArrowDownIcon from '@/assets/icons/arrow-down.svg';
+import TrashIcon from '@/assets/icons/trash.svg';
 import { cn } from '@/lib/utils';
 import React, { useEffect, useRef, useState } from 'react';
 
@@ -96,7 +97,7 @@ const DropDown = <T,>({
             'min-w-[70px]',
             'bg-gray50 shadow-lg',
             'z-10',
-            'border border-gray300 rounded-lg',
+            'border border-gray300 rounded-[0.8rem]',
           )}
           role="listbox"
         >
@@ -112,15 +113,17 @@ const DropDown = <T,>({
               <li
                 key={key} // key 적용
                 className={cn(
-                  'px-3 py-2.5 text-sm cursor-pointer',
-                  'hover:bg-gray100 rounded-lg',
-                  isSelected ? 'text-brand500 font-medium' : 'text-gray500', // isSelected 적용
+                  'flex flex-col justify-center items-start w-[9.4rem] h-[3.8rem] text-[1.4rem] text-gray-900 cursor-pointer',
+                  'hover:bg-gray100 rounded-[0.8rem] border-solid border-gray-300',
                 )}
                 onClick={() => handleSelect(item)}
                 role="option"
                 aria-selected={isSelected} // isSelected 적용
               >
-                {displayLabel}
+                <div className="flex justify-center items-center pl-[1rem] gap-[0.4rem]">
+                  <TrashIcon width={16} height={16} />
+                  {displayLabel}
+                </div>
               </li>
             );
           })}
