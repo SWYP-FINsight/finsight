@@ -32,5 +32,5 @@ export const getCollectionArticle = async (params: ICollectionArticlesParams): P
 };
 
 export const addCollection = async (data: IAddCollection) => {
-  return http.postData<AddCollectionResponse>(`collections`, data);
+  return http.postData<AddCollectionResponse>(`/collections`, data);
 };
