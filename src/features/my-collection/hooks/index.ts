@@ -1,14 +1,17 @@
-import { getCollectionArticle, getCollectionDetail, getCollections } from '@/features/my-collection/api';
-import { ICollectionArticlesParams } from '@/features/my-collection/types';
+import { addCollection, getCollectionArticle, getCollectionDetail, getCollections } from '@/features/my-collection/api';
+import { AddCollectionResponse, IAddCollection, ICollectionArticlesParams } from '@/features/my-collection/types';
+import { HttpError } from '@/lib/apiClient';
 import { QUERY_STALE_TIME } from '@/shared/constants';
 import { QueryKeys } from '@/shared/queries';
-import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
+import { useInfiniteQuery, useMutation, UseMutationOptions, useQuery } from '@tanstack/react-query';
 
 interface UseInfiniteCollectionArticlesOptions extends ICollectionArticlesParams {
   pageSize?: number;
   initialCursor?: string;
   options?: Parameters<typeof useInfiniteQuery>[0];
 }
+
+type AddCollectionMutationOptions = UseMutationOptions<AddCollectionResponse, HttpError, IAddCollection>;
 
 export const useCollectionArticle = ({
   collectionId,
@@ -48,5 +51,18 @@ export const useCollections = () => {
     queryKey: QueryKeys.collections.all,
     queryFn: () => getCollections().then((res) => res.data),
     staleTime: QUERY_STALE_TIME,
+  });
+};
+
+export const useAddCollectionMutation = (options?: Omit<AddCollectionMutationOptions, 'mutationFn'>) => {
+  return useMutation<AddCollectionResponse, HttpError, IAddCollection>({
+    mutationFn: addCollection,
+    ...options,
+    onSuccess: (data, variables, context, ...rest) => {
+      options?.onSuccess?.(data, variables, context, ...rest);
+    },
+    onError: (error, ...rest) => {
+      options?.onError?.(error, ...rest);
+    },
   });
 };
