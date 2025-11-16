@@ -23,7 +23,7 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body className={`${pretendard.variable} min-h-screen flex flex-col relative`}>
-        <div className="bg-gray-100">
+        <div className="bg-gray-100 h-dvh">
           <QueryProvider>{children}</QueryProvider>
         </div>
       </body>
