@@ -3,11 +3,10 @@ import { HTMLAttributes } from 'react';
 
 interface Props extends HTMLAttributes<HTMLDivElement> {
   title: string;
-  size?: 'lg' | 'sm';
   groupType: 'source' | 'period';
 }
 
-export default function ChipGroup({ title, size = 'lg', groupType }: Props) {
+export default function ChipGroup({ title, groupType }: Props) {
   return (
     <div className="inline-flex flex-col items-start gap-[0.6rem] shrink-0">
       {title && <h3 className="items-stretch text-[1.4rem] font-medium text-gray-900">{title}</h3>}
