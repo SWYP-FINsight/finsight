@@ -1,7 +1,9 @@
 import {
+  AddCollectionResponse,
   CollectionArticlesResponse,
   CollectionDetailResponse,
   CollectionsResponse,
+  IAddCollection,
   ICollectionArticlesParams,
 } from '@/features/my-collection/types';
 import { http } from '@/lib/http';
@@ -27,4 +29,8 @@ export const getCollectionArticle = async (params: ICollectionArticlesParams): P
   });
 
   return http.getData<CollectionArticlesResponse>(`/collections/${params.collectionId}/articles?${searchParams}`);
+};
+
+export const addCollection = async (data: IAddCollection) => {
+  return http.postData<AddCollectionResponse>(`collections`, data);
 };
