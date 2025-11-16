@@ -3,7 +3,7 @@ import { AddCollectionResponse, IAddCollection, ICollectionArticlesParams } from
 import { HttpError } from '@/lib/apiClient';
 import { QUERY_STALE_TIME } from '@/shared/constants';
 import { QueryKeys } from '@/shared/queries';
-import { UseMutationOptions, useInfiniteQuery, useMutation, useQuery } from '@tanstack/react-query';
+import { UseMutationOptions, useInfiniteQuery, useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
 interface UseInfiniteCollectionArticlesOptions extends ICollectionArticlesParams {
   pageSize?: number;
@@ -55,10 +55,13 @@ export const useCollections = () => {
 };
 
 export const useAddCollectionMutation = (options?: Omit<AddCollectionMutationOptions, 'mutationFn'>) => {
+  const queryClient = useQueryClient();
   return useMutation<AddCollectionResponse, HttpError, IAddCollection>({
     mutationFn: addCollection,
     ...options,
     onSuccess: (data, variables, context, ...rest) => {
+      queryClient.invalidateQueries({ queryKey: QueryKeys.collections.all });
+
       options?.onSuccess?.(data, variables, context, ...rest);
     },
     onError: (error, ...rest) => {
