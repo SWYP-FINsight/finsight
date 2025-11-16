@@ -3,6 +3,7 @@
 import { useAuthMe } from '@/features/auth/hooks';
 import Header from '@/features/my-collection/components/Collection.Header';
 import CollectionList from '@/features/my-collection/components/CollectionList';
+import CollectionLoggedOut from '@/features/my-collection/components/CollectionLoggedOut';
 import Loading from '@/shared/ui/loading/Loading';
 
 export default function CollectionPage() {
@@ -16,7 +17,7 @@ export default function CollectionPage() {
   return (
     <>
       <Header isLoggedIn={isLoggedIn} />
-      {isLoggedIn ? <CollectionList /> : <div>로그인이 필요한 서비스</div>}
+      {isLoggedIn ? <CollectionList /> : <CollectionLoggedOut />}
     </>
   );
 }
