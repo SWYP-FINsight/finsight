@@ -17,7 +17,7 @@ export default function AddCollectionForm({ onAddSuccess }: Props) {
     register,
     handleSubmit,
     control,
-    formState: { errors, isValid, isSubmitting },
+    formState: { errors, isValid },
   } = useForm<AddCollectionInputs>({
     mode: 'onChange',
   });
@@ -35,7 +35,7 @@ export default function AddCollectionForm({ onAddSuccess }: Props) {
     addMutation.mutate(data);
   };
 
-  const isAddDisabled = !isValid || isSubmitting;
+  const isAddDisabled = !isValid || addMutation.isPending;
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-[2rem]">
@@ -82,7 +82,7 @@ export default function AddCollectionForm({ onAddSuccess }: Props) {
           )}
           disabled={isAddDisabled}
         >
-          컬렉션 추가하기
+          {addMutation.isPending ? '추가 중...' : '컬렉션 추가하기'}
         </MvpButton>
       </div>
     </form>
