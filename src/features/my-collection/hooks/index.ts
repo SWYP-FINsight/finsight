@@ -3,7 +3,7 @@ import { AddCollectionResponse, IAddCollection, ICollectionArticlesParams } from
 import { HttpError } from '@/lib/apiClient';
 import { QUERY_STALE_TIME } from '@/shared/constants';
 import { QueryKeys } from '@/shared/queries';
-import { useInfiniteQuery, useMutation, UseMutationOptions, useQuery } from '@tanstack/react-query';
+import { UseMutationOptions, useInfiniteQuery, useMutation, useQuery } from '@tanstack/react-query';
 
 interface UseInfiniteCollectionArticlesOptions extends ICollectionArticlesParams {
   pageSize?: number;
