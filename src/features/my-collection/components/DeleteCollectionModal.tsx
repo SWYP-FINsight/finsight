@@ -11,6 +11,8 @@ interface Props extends HTMLAttributes<HTMLDivElement> {
 }
 
 export default function DeleteCollectionModal({ isOpen, onClose, onConfirm, isPending, ...rest }: Props) {
+  if (!isOpen) return null;
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4" onClick={onClose}>
       <div
@@ -24,11 +26,7 @@ export default function DeleteCollectionModal({ isOpen, onClose, onConfirm, isPe
           <MvpButton className="w-full bg-gray-50 text-gray-900" onClick={onClose} disabled={isPending}>
             취소
           </MvpButton>
-          <MvpButton
-            className="w-full bg-brand500 text-gray-50" // (삭제 버튼은 보통 빨간색)
-            onClick={onConfirm}
-            disabled={isPending}
-          >
+          <MvpButton className="w-full bg-brand500 text-gray-50" onClick={onConfirm} disabled={isPending}>
             {isPending ? '삭제 중...' : '삭제'}
           </MvpButton>
         </div>
