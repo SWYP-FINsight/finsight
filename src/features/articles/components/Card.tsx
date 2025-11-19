@@ -25,7 +25,7 @@ export default function Card({ className, data, ...rest }: Props) {
       {/* 내용 */}
       <div className="flex gap-[0.6rem] flex-col">
         <div className="text-gray900 text-[1.4rem] font-bold line-clamp-2">{title}</div>
-        <p className="text-gray-800 text-[1.2rem] line-clamp-3 leading-relaxed whitespace-pre-wrap font-normal">
+        <p className="text-gray700 text-[1.2rem] line-clamp-3 leading-relaxed whitespace-pre-wrap font-normal">
           {content}
         </p>
       </div>
@@ -33,7 +33,7 @@ export default function Card({ className, data, ...rest }: Props) {
       {/* 하단 정보 */}
       <div className="flex flex-row justify-between text-[1rem] text-gray-500 pt-[0.8rem]">
         <div>{formatDate(timestamp)}</div>
-        <Tag size="large">{source}</Tag>
+        <Tag size="small">{source}</Tag>
       </div>
     </div>
   );
