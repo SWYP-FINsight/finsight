@@ -4,13 +4,14 @@ import ArrowLeftIcon from '@/assets/icons/arrow-left.svg';
 import { useArticleDetail } from '@/features/articles/hooks';
 import { formatDate } from '@/shared/utils';
 import Link from 'next/link';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import React from 'react';
 
 export default function ArticleDetail() {
   const { id } = useParams();
   const { data, isLoading } = useArticleDetail(Number(id));
   const { title, content, source, timestamp, articleUrl } = data || {};
+  const router = useRouter();
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -22,7 +23,7 @@ export default function ArticleDetail() {
 
   return (
     <div>
-      <div className="px-4 py-5 cursor-pointer" onClick={() => window.history.back()}>
+      <div className="px-4 py-5 cursor-pointer" onClick={() => router.back()}>
         <ArrowLeftIcon width={24} height={24} />
       </div>
       <div className="bg-gray50 p-4 text-center space-y-10">

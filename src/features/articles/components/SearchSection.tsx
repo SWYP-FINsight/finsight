@@ -4,10 +4,12 @@ import ArrowLeftIcon from '@/assets/icons/arrow-left.svg';
 import ArticleList from '@/features/articles/components/ArticleList';
 import { useArticleFilters } from '@/features/articles/hooks';
 import SearchInput from '@/shared/ui/input/SearchInput';
+import { useRouter } from 'next/navigation';
 import React, { ChangeEvent, useEffect, useRef } from 'react';
 
 export default function SearchSection() {
   const { search, updateFilters } = useArticleFilters();
+  const router = useRouter();
   const debounceRef = useRef<number | null>(null);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -32,7 +34,7 @@ export default function SearchSection() {
   return (
     <>
       <div className="flex items-center p-[1.6rem] gap-4">
-        <ArrowLeftIcon width={24} height={24} />
+        <ArrowLeftIcon width={24} height={24} onClick={() => router.back()} />
         <SearchInput onChange={handleChange} />
       </div>
       {search && <ArticleList />}
