@@ -3,7 +3,7 @@ import React, { Suspense } from 'react';
 
 export default function Search() {
   return (
-    <div className="h-dvh">
+    <div className="min-h-screen h-vh">
       <Suspense fallback={<div>Loading...</div>}>
         <SearchSection />
       </Suspense>

@@ -37,7 +37,7 @@ export default function SearchSection() {
         <ArrowLeftIcon width={9} height={18} onClick={() => router.back()} />
         <SearchInput onChange={handleChange} />
       </div>
-      {search && <ArticleList />}
+      <div className="h-vh">{search && <ArticleList />}</div>
     </>
   );
 }
