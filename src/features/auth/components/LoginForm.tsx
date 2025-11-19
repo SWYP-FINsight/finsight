@@ -68,7 +68,7 @@ export default function LoginForm({ onLoginSuccess, onSwitchToRegister }: Props)
         <p className="text-center text-[1rem] text-red-500">{errors.root.serverError.message}</p>
       )}
 
-      <div className="flex gap-[0.8rem]">
+      <div className="flex gap-[0.8rem] mt-[1rem]">
         <MvpButton type="submit" className="bg-[#3ED4E0]" disabled={loginMutation.isPending}>
           {loginMutation.isPending ? '로그인 중...' : '로그인'}
         </MvpButton>

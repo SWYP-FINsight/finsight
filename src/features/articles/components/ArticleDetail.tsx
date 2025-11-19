@@ -24,17 +24,17 @@ export default function ArticleDetail() {
   return (
     <div>
       <div className="px-4 py-5 cursor-pointer" onClick={() => router.back()}>
-        <ArrowLeftIcon width={24} height={24} />
+        <ArrowLeftIcon width={7} height={14} />
       </div>
-      <div className="bg-gray50 p-4 text-center space-y-10">
-        <div className="text-[2rem] font-bold">{title}</div>
-        <div className="space-x-2 text-[1.2rem]">
+      <div className="bg-gray50 p-4 text-center">
+        <div className="text-[2rem] font-bold mb-[1.6rem] text-gray900">{title}</div>
+        <div className="space-x-2 text-[1.2rem] mb-[2rem] text-gray500">
           <span>{formatDate(timestamp ?? '')}</span>
           <span className="mx-2">
             <span className="bg-gay500">• {source}</span>
           </span>
           <Link
-            className="px-3 py-1 rounded-full border bg-gray50 border-gray300 font-[1rem]"
+            className="h-[1.2rem] px-[1.2rem] py-[0.4rem] rounded-full border bg-gray50 border-gray300 text-[1rem] font-medium"
             href={articleUrl || ''}
             target="_blank"
             rel="noopener noreferrer"
@@ -42,7 +42,7 @@ export default function ArticleDetail() {
             기사원문
           </Link>
         </div>
-        <div className="text-[1.4rem] font-regular">{content}</div>
+        <div className="text-[1.4rem] font-regular text-gray900">{content}</div>
       </div>
     </div>
   );
