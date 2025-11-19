@@ -33,8 +33,8 @@ export default function SearchSection() {
 
   return (
     <>
-      <div className="flex items-center p-[1.6rem] gap-4">
-        <ArrowLeftIcon width={24} height={24} onClick={() => router.back()} />
+      <div className="flex items-center p-[1.6rem] pb-[0.4rem] gap-4">
+        <ArrowLeftIcon width={9} height={18} onClick={() => router.back()} />
         <SearchInput onChange={handleChange} />
       </div>
       {search && <ArticleList />}
