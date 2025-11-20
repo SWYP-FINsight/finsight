@@ -10,7 +10,7 @@ export default function SearchComponent() {
     router.push('/search');
   };
   return (
-    <div className="w-full p-[1.6rem]">
+    <div className="w-full p-[1.6rem] pt-0">
       <SearchInput onClick={handleClick} inputSize={'lg'} />
     </div>
   );

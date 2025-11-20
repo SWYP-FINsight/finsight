@@ -51,9 +51,9 @@ export default function BottomNavigation() {
               className="flex flex-col w-[5.2rem] h-[5.2rem] items-center justify-center shrink-0"
             >
               {isActive ? (
-                <item.activeIcon className="w-[2rem] h-[2rem]" />
+                <item.activeIcon className="w-[2.4rem] h-[2.4rem]" />
               ) : (
-                <item.icon className="w-[2rem] h-[2rem]" />
+                <item.icon className="w-[2.4rem] h-[2.4rem]" />
               )}
               <span
                 className={cn('text-[1rem]', isActive ? 'text-gray-900 font-medium' : 'text-gray-500 font-regular')}

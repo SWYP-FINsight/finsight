@@ -16,7 +16,7 @@ export default function SearchInput({ inputSize = 'sm', ...rest }: Props) {
     >
       <SearchIcon width="1.6rem" height="1.6rem" />
       <input
-        className="w-full text-[1.4rem] font-regular text-gray-500 focus:outline-none focus:placeholder:text-transparent"
+        className="w-full text-[1.4rem] font-regular text-gray900 focus:outline-none focus:placeholder:text-transparent placeholder:text-gray500"
         placeholder="검색"
         type="text"
         {...rest}

@@ -10,8 +10,8 @@ export default function Tag({ children, size = 'small', ...rest }: Props) {
   return (
     <span
       className={cn(
-        'inline-flex items-center justify-center rounded-lg',
-        size === 'small' ? 'h-5 py-1 px-1.5' : 'h-6 py-1 px-1.5',
+        'inline-flex items-center justify-center rounded-[0.8rem]',
+        size === 'small' ? 'h-[2rem] py-[0.4rem] px-[0.6rem]' : 'h-[2.4rem] py-[0.4rem] px-[0.6rem]',
         'bg-gray100 text-gray700',
       )}
       {...rest}
