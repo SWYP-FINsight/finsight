@@ -121,7 +121,7 @@ const DropDown = <T,>({
                 aria-selected={isSelected} // isSelected 적용
               >
                 <div className="flex justify-center items-center pl-[1rem] gap-[0.4rem]">
-                  <TrashIcon width={16} height={16} />
+                  {items[0] === '삭제' && <TrashIcon width={16} height={16} />}
                   {displayLabel}
                 </div>
               </li>
