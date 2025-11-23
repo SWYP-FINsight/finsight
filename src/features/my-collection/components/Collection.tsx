@@ -1,10 +1,12 @@
 'use client';
 
 import CollectionMenuIcon from '@/assets/icons/collection-menu.svg';
+import TrashIcon from '@/assets/icons/trash.svg';
 import DropDown from '@/features/articles/components/DropDown';
 import CollectionArticleList from '@/features/my-collection/components/Collection.ArticleList';
 import { ICollections } from '@/features/my-collection/types';
 import { useDeleteModalStore } from '@/shared/store/useDeleteModalStore';
+import React from 'react';
 
 interface Props {
   data: ICollections;
@@ -31,6 +33,7 @@ export default function Collection({ data }: Props) {
           label={<CollectionMenuIcon width={24} height={24} />}
           itemToKey={(item) => item}
           itemToLabel={(item) => item}
+          icon={<TrashIcon width={16} height={16} />}
         />
       </div>
       <CollectionArticleList collectionId={data?.id ?? 1} />
