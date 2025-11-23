@@ -10,7 +10,7 @@ import {
 import { ApiResponse } from '@/features/common/types';
 import { HttpError } from '@/lib/apiClient';
 import { QUERY_STALE_TIME } from '@/shared/constants';
-import { useMutation, UseMutationOptions, useQuery, useQueryClient } from '@tanstack/react-query';
+import { UseMutationOptions, useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 
 type LoginMutationOptions = UseMutationOptions<ApiResponse, HttpError, LoginRequest>;
