@@ -1,7 +1,6 @@
 'use client';
 
 import ArrowDownIcon from '@/assets/icons/arrow-down.svg';
-import TrashIcon from '@/assets/icons/trash.svg';
 import { cn } from '@/lib/utils';
 import React, { useEffect, useRef, useState } from 'react';
 
@@ -11,7 +10,7 @@ interface DropDownProps<T> {
   defaultValue?: T;
   onChange: (value: T) => void;
   className?: string;
-
+  icon?: React.ReactNode;
   /**
    * item 객체에서 React key로 사용할 고유 값을 추출하는 함수
    */
@@ -30,6 +29,7 @@ const DropDown = <T,>({
   className,
   itemToKey,
   itemToLabel,
+  icon,
 }: DropDownProps<T>) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(defaultValue || items[0]);
@@ -121,7 +121,7 @@ const DropDown = <T,>({
                 aria-selected={isSelected} // isSelected 적용
               >
                 <div className="flex justify-center items-center pl-[1rem] gap-[0.4rem]">
-                  <TrashIcon width={16} height={16} />
+                  {icon}
                   {displayLabel}
                 </div>
               </li>
