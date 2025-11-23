@@ -1,4 +1,4 @@
-import {checkUsername, getAuthMe, loginUser, registerUser} from '@/features/auth/api';
+import { checkUsername, getAuthMe, loginUser, logout, registerUser } from '@/features/auth/api';
 import {
   AuthMeResponse,
   IUsernameParams,
@@ -7,10 +7,11 @@ import {
   RegisterResponse,
   UsernameValidateResponse,
 } from '@/features/auth/types';
-import {ApiResponse} from '@/features/common/types';
-import {HttpError} from '@/lib/apiClient';
-import {QUERY_STALE_TIME} from '@/shared/constants';
-import {useMutation, UseMutationOptions, useQuery, useQueryClient} from '@tanstack/react-query';
+import { ApiResponse } from '@/features/common/types';
+import { HttpError } from '@/lib/apiClient';
+import { QUERY_STALE_TIME } from '@/shared/constants';
+import { useMutation, UseMutationOptions, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useRouter } from 'next/navigation';
 
 type LoginMutationOptions = UseMutationOptions<ApiResponse, HttpError, LoginRequest>;
 type CheckUsernameMutationOptions = UseMutationOptions<UsernameValidateResponse, HttpError, IUsernameParams>;
@@ -59,6 +60,24 @@ export const useRegisterMutation = (options?: Omit<RegisterMutationOptions, 'mut
     },
     onError: (error, ...rest) => {
       options?.onError?.(error, ...rest);
+    },
+  });
+};
+
+export const useLogoutMutation = () => {
+  const queryClient = useQueryClient();
+  const router = useRouter();
+
+  return useMutation({
+    mutationFn: logout,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['auth', 'me'] });
+      queryClient.clear();
+
+      router.push('/');
+    },
+    onError: (error) => {
+      console.error(error);
     },
   });
 };
