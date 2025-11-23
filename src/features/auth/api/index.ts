@@ -29,3 +29,7 @@ export const checkUsername = async (params: IUsernameParams) => {
 export const registerUser = async (request: RegisterRequest) => {
   return http.postData<RegisterResponse>(`/auth/signup`, request);
 };
+
+export const logout = async () => {
+  return http.postData<ApiResponse>(`/auth/logout`, {});
+};
