@@ -43,7 +43,8 @@ export default function ArticleDetail() {
             기사원문
           </Link>
         </div>
-        <AiSummary />
+        <AiSummary title="뉴스 AI 요약" size="md" />
+
         <div className="text-[1.4rem] font-regular text-gray900">{content}</div>
       </div>
     </div>

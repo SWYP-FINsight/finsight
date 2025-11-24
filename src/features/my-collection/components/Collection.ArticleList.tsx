@@ -1,5 +1,6 @@
 'use client';
 
+import AiSummary from '@/features/ai/components/Summary';
 import Card from '@/features/articles/components/Card';
 import { useCollectionArticle } from '@/features/my-collection/hooks';
 import { useRouter } from 'next/navigation';
@@ -50,6 +51,12 @@ export default function CollectionArticleList({ collectionId }: Props) {
   return (
     <div className="overflow-y-auto">
       <div className="flex flex-col gap-4">
+        <AiSummary
+          title="컬렉션 AI 요약"
+          size="sm"
+          ids={data?.pages?.flatMap((page) => page.data.content).map((item) => item.id)}
+        />
+
         {data?.pages
           .flatMap((page) => page.data.content)
           .map((item) => (
