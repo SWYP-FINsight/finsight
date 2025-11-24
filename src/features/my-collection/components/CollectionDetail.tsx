@@ -5,7 +5,8 @@ import PencilIcon from '@/assets/icons/pencil.svg';
 import TrashIcon from '@/assets/icons/trash.svg';
 import DropDown from '@/features/articles/components/DropDown';
 import CollectionArticleList from '@/features/my-collection/components/Collection.ArticleList';
-import { useCollectionDetail } from '@/features/my-collection/hooks';
+import DeleteCollectionModal from '@/features/my-collection/components/DeleteCollectionModal';
+import { useCollectionDetail, useDeleteCollectionMutation } from '@/features/my-collection/hooks';
 import { useDeleteModalStore } from '@/shared/store/useDeleteModalStore';
 import { useParams, useRouter } from 'next/navigation';
 import React from 'react';
@@ -15,6 +16,28 @@ export default function CollectionDetail() {
   const { data } = useCollectionDetail(Number(id));
   const router = useRouter();
   const openDeleteModal = useDeleteModalStore((state) => state.open);
+
+  const {
+    isOpen: isDeleteModalOpen,
+    collectionId: collectionIdToDelete,
+    close: closeDeleteModal,
+  } = useDeleteModalStore();
+
+  const deleteMutation = useDeleteCollectionMutation({
+    onSuccess: () => {
+      closeDeleteModal(); // 성공 시 스토어의 close 호출
+      router.push('/my-collection');
+    },
+    onError: () => {
+      closeDeleteModal();
+    },
+  });
+
+  const handleConfirmDelete = () => {
+    if (collectionIdToDelete) {
+      deleteMutation.mutate(collectionIdToDelete);
+    }
+  };
 
   const handleDropdownChange = () => {
     openDeleteModal(Number(id));
@@ -48,6 +71,13 @@ export default function CollectionDetail() {
       </div>
 
       <CollectionArticleList collectionId={Number(id)} />
+
+      <DeleteCollectionModal
+        isOpen={isDeleteModalOpen}
+        onClose={closeDeleteModal}
+        onConfirm={handleConfirmDelete}
+        isPending={deleteMutation.isPending}
+      />
     </div>
   );
 }
