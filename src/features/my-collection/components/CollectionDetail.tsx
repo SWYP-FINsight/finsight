@@ -40,6 +40,7 @@ export default function CollectionDetail() {
   };
 
   const handleDropdownChange = () => {
+    // TODO: 수정 기능 추가 개발 예정
     openDeleteModal(Number(id));
   };
 
