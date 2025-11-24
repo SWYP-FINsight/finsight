@@ -48,8 +48,7 @@ export default function CollectionArticleList({ collectionId }: Props) {
   }
 
   return (
-    <div className="h-[40rem] overflow-y-auto">
-      {/* 데이터 렌더링 */}
+    <div className="overflow-y-auto">
       <div className="flex flex-col gap-4">
         {data?.pages
           .flatMap((page) => page.data.content)

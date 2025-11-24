@@ -4,10 +4,12 @@ import AddFolderIcon from '@/assets/icons/add-folder.svg';
 import Collection from '@/features/my-collection/components/Collection';
 import { useCollections } from '@/features/my-collection/hooks';
 import MyCollectionLoading from '@/shared/ui/loading/MyCollectionLoading';
+import { useRouter } from 'next/navigation';
 import React from 'react';
 
 export default function CollectionList() {
   const { data, isLoading, isFetching } = useCollections();
+  const router = useRouter();
 
   if (isFetching || isLoading) {
     return <MyCollectionLoading />;
@@ -28,7 +30,11 @@ export default function CollectionList() {
   return (
     <div className="w-full p-[1.6rem] flex flex-col gap-[1.6rem]">
       {data?.collections.map((collection) => (
-        <Collection key={collection.id} data={collection} />
+        <Collection
+          key={collection.id}
+          data={collection}
+          onClick={() => router.push(`/my-collection/${collection.id}`)}
+        />
       ))}
     </div>
   );
