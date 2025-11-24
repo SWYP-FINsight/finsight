@@ -1,6 +1,7 @@
 'use client';
 
 import ArrowLeftIcon from '@/assets/icons/arrow-left.svg';
+import AiSummary from '@/features/ai/components/Summary';
 import { useArticleDetail } from '@/features/articles/hooks';
 import { formatDate } from '@/shared/utils';
 import Link from 'next/link';
@@ -26,9 +27,9 @@ export default function ArticleDetail() {
       <div className="px-4 py-5 cursor-pointer" onClick={() => router.back()}>
         <ArrowLeftIcon width={7} height={14} />
       </div>
-      <div className="bg-gray50 p-4 text-center">
-        <div className="text-[2rem] font-bold mb-[1.6rem] text-gray900">{title}</div>
-        <div className="space-x-2 text-[1.2rem] mb-[2rem] text-gray500">
+      <div className="bg-gray50 p-4 text-center flex flex-col gap-[1.6rem]">
+        <div className="text-[2rem] font-bold text-gray900">{title}</div>
+        <div className="space-x-2 text-[1.2rem] text-gray500">
           <span>{formatDate(timestamp ?? '')}</span>
           <span className="mx-2">
             <span className="bg-gay500">• {source}</span>
@@ -42,6 +43,8 @@ export default function ArticleDetail() {
             기사원문
           </Link>
         </div>
+        <AiSummary title="뉴스 AI 요약" size="md" />
+
         <div className="text-[1.4rem] font-regular text-gray900">{content}</div>
       </div>
     </div>

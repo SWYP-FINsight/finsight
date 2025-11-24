@@ -5,9 +5,6 @@ import AddCollectionForm from '@/features/my-collection/components/AddCollection
 import Header from '@/features/my-collection/components/Collection.Header';
 import CollectionList from '@/features/my-collection/components/CollectionList';
 import CollectionLoggedOut from '@/features/my-collection/components/CollectionLoggedOut';
-import DeleteCollectionModal from '@/features/my-collection/components/DeleteCollectionModal';
-import { useDeleteCollectionMutation } from '@/features/my-collection/hooks';
-import { useDeleteModalStore } from '@/shared/store/useDeleteModalStore';
 import MyCollectionLoading from '@/shared/ui/loading/MyCollectionLoading';
 import AlertModal from '@/shared/ui/modal/AlertModal';
 import FormModal from '@/shared/ui/modal/FormModal';
@@ -23,25 +20,6 @@ export default function CollectionPage() {
   const openAddModal = () => setActiveModal('addCollection');
   const closeModal = () => setActiveModal(null);
 
-  const {
-    isOpen: isDeleteModalOpen,
-    collectionId: collectionIdToDelete,
-    close: closeDeleteModal,
-  } = useDeleteModalStore();
-
-  const deleteMutation = useDeleteCollectionMutation({
-    onSuccess: () => closeDeleteModal(), // 성공 시 스토어의 close 호출
-    onError: () => {
-      closeDeleteModal();
-    },
-  });
-
-  const handleConfirmDelete = () => {
-    if (collectionIdToDelete) {
-      deleteMutation.mutate(collectionIdToDelete);
-    }
-  };
-
   if (isLoading) {
     return <MyCollectionLoading />;
   }
@@ -56,12 +34,6 @@ export default function CollectionPage() {
       <AlertModal isOpen={activeModal === 'success'} onClose={closeModal} modalType="success">
         컬렉션이 추가되었습니다.
       </AlertModal>
-      <DeleteCollectionModal
-        isOpen={isDeleteModalOpen}
-        onClose={closeDeleteModal}
-        onConfirm={handleConfirmDelete}
-        isPending={deleteMutation.isPending}
-      />
     </>
   );
 }
