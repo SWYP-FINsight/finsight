@@ -2,7 +2,7 @@
 
 import ArrowDownIcon from '@/assets/icons/arrow-down.svg';
 import { cn } from '@/lib/utils';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { ReactNode, useEffect, useRef, useState } from 'react';
 
 interface DropDownProps<T> {
   items: T[];
@@ -121,7 +121,7 @@ const DropDown = <T,>({
                 aria-selected={isSelected} // isSelected 적용
               >
                 <div className="flex justify-center items-center pl-[1rem] gap-[0.4rem]">
-                  {typeof item === 'object' && item !== null && 'icon' in item && (item as any).icon}
+                  {typeof item === 'object' && item !== null && 'icon' in item && (item as { icon: ReactNode })?.icon}
                   {displayLabel}
                 </div>
               </li>
