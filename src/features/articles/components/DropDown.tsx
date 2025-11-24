@@ -121,7 +121,7 @@ const DropDown = <T,>({
                 aria-selected={isSelected} // isSelected 적용
               >
                 <div className="flex justify-center items-center pl-[1rem] gap-[0.4rem]">
-                  {icon}
+                  {typeof item === 'object' && item !== null && 'icon' in item && (item as any).icon}
                   {displayLabel}
                 </div>
               </li>

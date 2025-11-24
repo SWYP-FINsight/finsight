@@ -12,7 +12,7 @@ export default function Collection({ data, ...rest }: Props) {
   if (!data) return;
 
   return (
-    <div className="flex flex-col px-[1.6rem] py-[2.0rem] border-b-1 border-[#E1E2E5] cursor-pointer" {...rest}>
+    <div className="flex flex-col py-[2.0rem] border-b-1 border-[#E1E2E5] cursor-pointer" {...rest}>
       <div className="flex justify-between items-center">
         <p className="text-[1.4rem] font-bold">{data?.collectionName ?? ''}</p>
 

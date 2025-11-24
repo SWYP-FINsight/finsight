@@ -28,7 +28,7 @@ export default function CollectionList() {
   }
 
   return (
-    <div className="w-full p-[1.6rem] flex flex-col gap-[1.6rem]">
+    <div className="w-full p-[1.6rem] flex flex-col gap-[1.6rem] pt-0">
       {data?.collections.map((collection) => (
         <Collection
           key={collection.id}
