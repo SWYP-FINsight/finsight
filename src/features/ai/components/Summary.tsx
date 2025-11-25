@@ -3,6 +3,7 @@
 import { postAiSummary, postAiSummaryArticle } from '../api';
 import AiSummaryIcon from '@/assets/icons/ai-summary.svg';
 import { cn } from '@/lib/utils';
+import Spinner from '@/shared/ui/spinner/Spinner';
 import { useParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 
@@ -15,7 +16,9 @@ interface AiSummaryProps {
 export default function AiSummary({ title, size, ids }: AiSummaryProps) {
   const { id } = useParams();
   const [aiContent, setAiContent] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
   const iconSize = size === 'md' ? 24 : 14;
+  const spinnerSize = size === 'md' ? 22 : 16;
 
   useEffect(() => {
     const fetchAiSummary = async () => {
@@ -23,6 +26,7 @@ export default function AiSummary({ title, size, ids }: AiSummaryProps) {
         try {
           const response = await postAiSummary({ articleIds: ids });
           setAiContent(response?.data?.summarize || '요약된 내용이 없습니다.');
+          setIsLoading(false);
         } catch (error) {
           console.error('Error fetching AI summaries:', error);
           setAiContent('요약된 내용을 불러오는 중 오류가 발생했습니다.');
@@ -34,6 +38,7 @@ export default function AiSummary({ title, size, ids }: AiSummaryProps) {
         try {
           const response = await postAiSummaryArticle({ articleId: Number(id) });
           setAiContent(response?.data?.summarize || '요약된 내용이 없습니다.');
+          setIsLoading(false);
         } catch (error) {
           console.error('Error fetching AI summary:', error);
           setAiContent('요약된 내용을 불러오는 중 오류가 발생했습니다.');
@@ -60,6 +65,7 @@ export default function AiSummary({ title, size, ids }: AiSummaryProps) {
         >
           {title}
         </span>
+        {isLoading && <Spinner size={spinnerSize} />}
       </div>
       <p className={cn(size === 'md' ? 'text-[1.4rem]' : 'text-[1.2rem]', 'text-gray900 font-normal text-left')}>
         {aiContent || ''}
