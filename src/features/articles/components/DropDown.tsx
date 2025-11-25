@@ -29,7 +29,6 @@ const DropDown = <T,>({
   className,
   itemToKey,
   itemToLabel,
-  icon,
 }: DropDownProps<T>) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(defaultValue || items[0]);
@@ -108,6 +107,7 @@ const DropDown = <T,>({
 
             // 8. 비교 로직 수정 (객체 직접 비교 대신 key 값으로 비교)
             const isSelected = selectedItem && itemToKey(selectedItem) === key;
+            console.log(key);
 
             return (
               <li
