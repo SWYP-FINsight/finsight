@@ -1,8 +1,9 @@
 'use client';
 
+import KakaoLogo from '@/assets/icons/kakao-logo.svg';
 import { useLoginMutation } from '@/features/auth/hooks';
 import { HttpError } from '@/lib/apiClient';
-import MvpButton from '@/shared/ui/button/MvpButton';
+import Button from '@/shared/ui/button/Button';
 import LabelInput from '@/shared/ui/input/LabelInput';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
@@ -68,14 +69,19 @@ export default function LoginForm({ onLoginSuccess, onSwitchToRegister }: Props)
         <p className="text-center text-[1rem] text-red-500">{errors.root.serverError.message}</p>
       )}
 
-      <div className="flex gap-[0.8rem] mt-[1rem]">
-        <MvpButton type="submit" className="bg-[#3ED4E0]" disabled={loginMutation.isPending}>
+      <div className="flex flex-col gap-[1.2rem] mt-[1rem]">
+        <Button type="submit" className="bg-brand500" disabled={loginMutation.isPending}>
           {loginMutation.isPending ? '로그인 중...' : '로그인'}
-        </MvpButton>
-
-        <MvpButton type="button" className="bg-brand500" onClick={onSwitchToRegister}>
+        </Button>
+        <Button type="button" className="text-[#000] bg-[#FEE500]" onClick={onSwitchToRegister}>
+          <span className="flex justify-center items-center gap-[1rem]">
+            <KakaoLogo width={18} height={18} />
+            카카오 로그인
+          </span>
+        </Button>
+        <Button type="button" className="bg-gray-100 text-gray900" onClick={onSwitchToRegister}>
           회원가입
-        </MvpButton>
+        </Button>
       </div>
     </form>
   );
