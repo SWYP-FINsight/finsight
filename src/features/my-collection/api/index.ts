@@ -6,6 +6,7 @@ import {
   CollectionsResponse,
   IAddCollection,
   ICollectionArticlesParams,
+  IUpdateCollection,
 } from '@/features/my-collection/types';
 import { http } from '@/lib/http';
 
@@ -38,4 +39,8 @@ export const addCollection = async (data: IAddCollection) => {
 
 export const deleteCollection = async (id: number) => {
   return http.deleteData<ApiResponse>(`/collections/${id}`);
+};
+
+export const updateCollection = async ({ id, data }: IUpdateCollection) => {
+  return http.putData<ApiResponse>(`/collections/${id}`, data);
 };
