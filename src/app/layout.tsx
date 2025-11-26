@@ -11,6 +11,7 @@ const pretendard = localFont({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://finsight-publish.vercel.app/'),
   title: 'FINsight',
   icons: {
     icon: '/favicon.png',
