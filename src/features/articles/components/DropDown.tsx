@@ -29,7 +29,6 @@ const DropDown = <T,>({
   className,
   itemToKey,
   itemToLabel,
-  icon,
 }: DropDownProps<T>) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(defaultValue || items[0]);
