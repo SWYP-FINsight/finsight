@@ -8,7 +8,7 @@ import { useAuthMe } from '@/features/auth/hooks';
 import DefaultButton from '@/shared/ui/button/DefaultButton';
 import AlertModal from '@/shared/ui/modal/AlertModal';
 import FormModal from '@/shared/ui/modal/FormModal';
-import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 type ModalType = 'login' | 'register' | 'registerSuccess' | null;
@@ -24,11 +24,13 @@ export default function Header() {
   const openRegisterModal = () => setActiveModal('register');
   const closeModal = () => setActiveModal(null);
 
+  const router = useRouter();
+
   return (
     <header className="flex w-full p-[1.6rem] justify-between items-center">
-      <Link href="/">
+      <button className="cursor-pointer" type="button" onClick={() => router.push('/')}>
         <LogoIcon />
-      </Link>
+      </button>
       <div>
         {isLoading ? (
           <h3>로딩중</h3>
