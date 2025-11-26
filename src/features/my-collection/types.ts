@@ -19,6 +19,11 @@ export interface IAddCollection {
   source: string;
 }
 
+export interface IUpdateCollection {
+  id: number;
+  data: IAddCollection;
+}
+
 export interface ICollectionArticlesParams {
   collectionId: number;
   cursor?: string; // 마지막으로 조회된 가사의 publishedAt 값
